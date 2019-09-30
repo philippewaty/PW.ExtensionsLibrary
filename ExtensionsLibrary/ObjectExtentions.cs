@@ -1,0 +1,154 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.IO;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ExtensionsLibrary
+{
+  public static class ObjectExtentions
+  {
+    /// <summary>
+    /// 	Converts an object to the specified target type or returns the default value if
+    ///     those 2 types are not convertible.
+    ///     <para>
+    ///     If the <paramref name="value"/> can't be convert even if the types are 
+    ///     convertible with each other, an exception is thrown.</para>
+    /// </summary>
+    /// <typeparam name = "T"></typeparam>
+    /// <param name = "value">The value.</param>
+    /// <returns>The target type</returns>
+    public static T ConvertTo<T>(this object value)
+    {
+      return value.ConvertTo(default(T));
+    }
+
+    /// <summary>
+    /// 	Converts the specified value to a different type.
+    /// </summary>
+    /// <typeparam name = "T"></typeparam>
+    /// <param name = "value">The value.</param>
+    /// <returns>An universal converter suppliying additional target conversion methods</returns>
+    /// <example>
+    /// 	<code>
+    /// 		var value = "123";
+    /// 		var numeric = value.ConvertTo().ToInt32();
+    /// 	</code>
+    /// </example>
+    public static IConverter<T> ConvertTo<T>(this T value)
+    {
+      return new Converter<T>(value);
+    }
+
+    /// <summary>
+    /// 	Converts an object to the specified target type or returns the default value if
+    ///     those 2 types are not convertible.
+    ///     <para>
+    ///     If the <paramref name="value"/> can't be convert even if the types are 
+    ///     convertible with each other, an exception is thrown.</para>
+    /// </summary>
+    /// <typeparam name = "T"></typeparam>
+    /// <param name = "value">The value.</param>
+    /// <param name = "defaultValue">The default value.</param>
+    /// <returns>The target type</returns>
+    public static T ConvertTo<T>(this object value, T defaultValue)
+    {
+      if (value != null)
+      {
+        var targetType = typeof(T);
+
+        if (value.GetType() == targetType) return (T)value;
+
+        var converter = TypeDescriptor.GetConverter(value);
+        if (converter != null)
+        {
+          if (converter.CanConvertTo(targetType))
+            return (T)converter.ConvertTo(value, targetType);
+        }
+
+        converter = TypeDescriptor.GetConverter(targetType);
+        if (converter != null)
+        {
+          if (converter.CanConvertFrom(value.GetType()))
+            return (T)converter.ConvertFrom(value);
+        }
+      }
+      return defaultValue;
+    }
+
+    /// <summary>
+    /// 	Converts an object to the specified target type or returns the default value if
+    ///     those 2 types are not convertible.
+    ///     <para>Any exceptions are optionally ignored (<paramref name="ignoreException"/>).</para>
+    ///     <para>
+    ///     If the exceptions are not ignored and the <paramref name="value"/> can't be convert even if 
+    ///     the types are convertible with each other, an exception is thrown.</para>
+    /// </summary>
+    /// <typeparam name = "T"></typeparam>
+    /// <param name = "value">The value.</param>
+    /// <param name = "defaultValue">The default value.</param>
+    /// <param name = "ignoreException">if set to <c>true</c> ignore any exception.</param>
+    /// <returns>The target type</returns>
+    public static T ConvertTo<T>(this object value, T defaultValue, bool ignoreException)
+    {
+      if (ignoreException)
+      {
+        try
+        {
+          return value.ConvertTo<T>();
+        }
+        catch
+        {
+          return defaultValue;
+        }
+      }
+      return value.ConvertTo<T>();
+    }
+
+    /// <summary>
+    /// Creates a deep clone of the current System.Object.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="item">The original object.</param>
+    /// <returns>A clone of the original object</returns>
+    public static T DeepClone<T>(this T item) where T : ISerializable
+    {
+      using (MemoryStream memoryStream = new MemoryStream())
+      {
+        BinaryFormatter binaryFormatter = new BinaryFormatter();
+        binaryFormatter.Serialize(memoryStream, item);
+        memoryStream.Seek(0, SeekOrigin.Begin);
+        return (T)binaryFormatter.Deserialize(memoryStream);
+      }
+    }
+
+    /// <summary>
+    /// 	Returns TRUE, if specified target reference is equals with null reference.
+    /// 	Othervise returns FALSE.
+    /// </summary>
+    /// <typeparam name = "T">Type of target.</typeparam>
+    /// <param name = "target">Target reference. Can be null.</param>
+    /// <remarks>
+    /// 	Some types has overloaded '==' and '!=' operators.
+    /// 	So the code "null == ((MyClass)null)" can returns <c>false</c>.
+    /// 	The most correct way how to test for null reference is using "System.Object.ReferenceEquals(object, object)" method.
+    /// 	However the notation with ReferenceEquals method is long and uncomfortable - this extension method solve it.
+    /// 
+    /// 	Contributed by tencokacistromy, http://www.codeplex.com/site/users/view/tencokacistromy
+    /// </remarks>
+    /// <example>
+    /// 	MyClass someObject = GetSomeObject();
+    /// 	if ( someObject.IsNotNull() ) { /* the someObject is not null */ }
+    /// 	else { /* the someObject is null */ }
+    /// </example>
+    public static bool IsNotNull<T>(this T target)
+    {
+      var result = !ReferenceEquals(target, null);
+      return result;
+    }
+  }
+}
