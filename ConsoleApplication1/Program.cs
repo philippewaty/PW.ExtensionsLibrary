@@ -11,22 +11,9 @@ namespace ConsoleApplication1
   {
     static void Main(string[] args)
     {
-      Console.WriteLine("STRING");
-      Console.WriteLine("------");
-      string test = "philippe.waty@medsoc@be";
-      Console.WriteLine("abc".Repeat(3));
-      Console.WriteLine(test.Repeat(2));
-      Console.WriteLine(test.IsValidEmailAddress());
-      test = "philippe.waty@medsoc";
-      Console.WriteLine(test.IsValidEmailAddress());
-      test = "philippe.waty@medsoc.be";
-      Console.WriteLine(test.IsValidEmailAddress());
-      Console.WriteLine("Suppress leading zero from 000123456789 : {0}", "000123456789".SuppressLeadingZero());
+      TestString();
 
-      Console.WriteLine("Format");
-      Console.WriteLine(@"Bonjour {prenom} {nom} {mail}".Format(new { prenom = "Philippe", nom = "Waty", mail = "philippe.waty@medsoc.be" }));
-
-      Console.WriteLine("Convertion");
+      Console.WriteLine("Conversion");
       Console.WriteLine("123".ConvertTo().ToInt32());
       Console.WriteLine(123f.ConvertTo<Int32>());
       Console.WriteLine(123.ConvertTo<Int64>());
@@ -61,32 +48,32 @@ namespace ConsoleApplication1
       DateTime myDate = DateTime.Today;
 
       Console.WriteLine(myDate.GetFirstDayOfMonth().ToString("dd/MM/yyyy"));
-      Console.WriteLine(myDate.GetLastDayOfMonth().ToString("dd MMMM yyyy"));
+      Console.WriteLine(myDate.LastDayOfMonth().ToString("dd MMMM yyyy"));
 
-      Console.WriteLine(String.Format("La date {0} est un weekend? : {1}", myDate.ToString("dd MMMM yyyy"), myDate.IsWeekend()));
+      Console.WriteLine(String.Format("Is date {0} is a weekend? : {1}", myDate.ToString("dd MMMM yyyy"), myDate.IsWeekend()));
       myDate = new DateTime(2012, 12, 23);
-      Console.WriteLine(String.Format("La date {0} est un weekend? : {1}", myDate.ToString("dd MMMM yyyy"), myDate.IsWeekend()));
-      Console.WriteLine(String.Format("La date {0} est la date du jour ? : {1}", myDate.ToString("dd MMMM yyyy"), myDate.IsToday()));
+      Console.WriteLine(String.Format("Is date {0} is a weekend? : {1}", myDate.ToString("dd MMMM yyyy"), myDate.IsWeekend()));
+      Console.WriteLine(String.Format("Is date {0} today ? : {1}", myDate.ToString("dd MMMM yyyy"), myDate.IsToday()));
       myDate = DateTime.Today;
-      Console.WriteLine(String.Format("La date {0} est la date du jour ? : {1}", myDate.ToString("dd MMMM yyyy"), myDate.IsToday()));
-      Console.WriteLine(String.Format("Le n° du jour de {0} est {1}", myDate.ToString("dd MMMM yyyy"), myDate.GetDayOfYear()));
+      Console.WriteLine(String.Format("Is date {0} today ? : {1}", myDate.ToString("dd MMMM yyyy"), myDate.IsToday()));
+      Console.WriteLine(String.Format("Day number {0} is {1}", myDate.ToString("dd MMMM yyyy"), myDate.GetDayOfYear()));
 
       myDate = new DateTime(2010, 2, 1);
-      Console.WriteLine(String.Format("Nb jours dans {0} : {1}", myDate.ToString("dd/MM/yyyy"), myDate.GetCountDaysOfMonth()));
+      Console.WriteLine(String.Format("Number days in {0} : {1}", myDate.ToString("dd/MM/yyyy"), myDate.GetCountDaysOfMonth()));
       myDate = new DateTime(2012, 2, 1);
-      Console.WriteLine(String.Format("Nb jours dans {0} : {1}", myDate.ToString("dd/MM/yyyy"), myDate.GetCountDaysOfMonth()));
+      Console.WriteLine(String.Format("Number days in {0} : {1}", myDate.ToString("dd/MM/yyyy"), myDate.GetCountDaysOfMonth()));
       myDate = new DateTime(2012, 3, 3);
-      Console.WriteLine(String.Format("Nb jours dans {0} : {1}", myDate.ToString("dd/MM/yyyy"), myDate.GetCountDaysOfMonth()));
+      Console.WriteLine(String.Format("Number days in {0} : {1}", myDate.ToString("dd/MM/yyyy"), myDate.GetCountDaysOfMonth()));
       myDate = new DateTime(2012, 4, 1);
-      Console.WriteLine(String.Format("Nb jours dans {0} : {1}", myDate.ToString("dd/MM/yyyy"), myDate.GetCountDaysOfMonth()));
+      Console.WriteLine(String.Format("Number days in {0} : {1}", myDate.ToString("dd/MM/yyyy"), myDate.GetCountDaysOfMonth()));
       myDate = new DateTime(2012, 7, 7);
-      Console.WriteLine(String.Format("Nb jours dans {0} : {1}", myDate.ToString("dd/MM/yyyy"), myDate.GetCountDaysOfMonth()));
+      Console.WriteLine(String.Format("Number days in {0} : {1}", myDate.ToString("dd/MM/yyyy"), myDate.GetCountDaysOfMonth()));
 
       myDate = new DateTime(1973, 10, 3);
       DateTime myDate2 = new DateTime(2013, 10, 3);
-      Console.WriteLine(String.Format("Age de {0} au {1} : {2}", myDate.ToString("dd/MM/yyyy"), myDate2.ToString("dd/MM/yyyy"), myDate.CalculateAge(myDate2)));
-      Console.WriteLine(String.Format("Age de {0} maintenant : {1}", myDate.ToString("dd/MM/yyyy"), myDate.CalculateAge()));
-      Console.WriteLine(String.Format("N° de semaine de {0} : {1}", myDate.ToString("dd/MM/yyyy"), myDate.GetWeekOfYear()));
+      Console.WriteLine(String.Format("Age from {0} to {1} : {2}", myDate.ToString("dd/MM/yyyy"), myDate2.ToString("dd/MM/yyyy"), myDate.CalculateAge(myDate2)));
+      Console.WriteLine(String.Format("Age from {0} now : {1}", myDate.ToString("dd/MM/yyyy"), myDate.CalculateAge()));
+      Console.WriteLine(String.Format("Week number of {0} : {1}", myDate.ToString("dd/MM/yyyy"), myDate.GetWeekOfYear()));
 
       Console.WriteLine("isDate 01/01/2018 ? {0}", "01/01/2018".IsDate());
       Console.WriteLine("isDate 29/02/2016 ? {0}", "29/02/2016".IsDate());
@@ -111,9 +98,9 @@ namespace ConsoleApplication1
       Console.WriteLine("empty string {0}", string.Empty.IsDate());
       Console.WriteLine("null string {0}", ((string)null).IsDate());
 
-      string s = "ceci est un test";
-      Console.WriteLine(String.Format("{0} finit par s : {1}", s, s.EnsureEndsWith("s")));
-      Console.WriteLine(String.Format("{0} commence par 'un' : {1}", s, s.EnsureStartsWith("un ")));
+      string s = "this is a test";
+      Console.WriteLine(String.Format("{0} ends with s : {1}", s, s.EnsureEndsWith("s")));
+      Console.WriteLine(String.Format("{0} begins with 'this' : {1}", s, s.EnsureStartsWith("un ")));
 
       Console.WriteLine(ExtensionsLibrary.StringHelper.RandomString(10, false, true, false, false));
       Console.WriteLine(ExtensionsLibrary.StringHelper.RandomString(10, true, true, true, true));
@@ -157,8 +144,27 @@ namespace ConsoleApplication1
       Console.WriteLine(5.IsBetween(1, 10));
       Console.WriteLine(11.IsBetween(1, 10));
 
-      Console.WriteLine("Appuyez sur une touche...");
+      Console.WriteLine("Push a key...");
       Console.ReadKey();
+    }
+
+    static void TestString()
+    {
+      Console.WriteLine("STRING");
+      Console.WriteLine("------");
+      string test = "john.doe@gmail@com";
+      Console.WriteLine("abc".Repeat(3));
+      Console.WriteLine(test.Repeat(2));
+      Console.WriteLine($"{test} is valid email : {test.IsValidEmailAddress()}");
+      test = "john.doe@gmail";
+      Console.WriteLine($"{test} is valid email : {test.IsValidEmailAddress()}");
+      test = "john.doe@gmail.com";
+      Console.WriteLine($"{test} is valid email : {test.IsValidEmailAddress()}");
+      Console.WriteLine("Suppress leading zero from 000123456789 : {0}", "000123456789".SuppressLeadingZero());
+
+      Console.WriteLine("Format");
+      Console.WriteLine(@"Hello @firstname @lastname @mail".Format(new { firstname = "John", lastname = "Doe", mail = "john.doe@gmail.com" }));
+      Console.WriteLine("End string");
     }
   }
 

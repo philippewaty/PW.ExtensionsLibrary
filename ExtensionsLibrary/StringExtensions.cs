@@ -34,7 +34,7 @@ namespace ExtensionsLibrary
     /// <example>string result = StrFormater.Format(@"Hello {Name}! Welcome to C#!", new { Name = "World" });</example>
     public static string Format(this string template, object data)
     {
-      return Regex.Replace(template, @"{([\w\d]+)}", match => GetValue(match, data));
+      return Regex.Replace(template, @"@([\w\d]+)", match => GetValue(match, data));
     }
 
     static string GetValue(Match match, object data)
