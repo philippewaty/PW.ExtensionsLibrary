@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("ExtensionsLibrary")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Compilation of useful C# extension methods to boost productivity for the .net developers.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("ExtensionsLibrary")]
-[assembly: AssemblyCopyright("Copyright ©  2017")]
+[assembly: AssemblyCopyright("Copyright © 2019 Philippe Waty")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

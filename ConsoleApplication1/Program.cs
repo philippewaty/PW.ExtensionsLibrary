@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ExtensionsLibrary;
 
 namespace ConsoleApplication1
@@ -13,11 +9,72 @@ namespace ConsoleApplication1
     {
       TestString();
 
-      Console.WriteLine("Conversion");
+      Console.WriteLine("");
+      TestConversion();
+
+      Console.WriteLine("");
+      TestDates();
+
+      Console.WriteLine("");
+      TestBoolean();
+
+      Console.WriteLine("");
+      TestNumber();
+
+      Console.WriteLine("Push a key...");
+      Console.ReadKey();
+    }
+
+    static void TestString()
+    {
+      Console.WriteLine("STRING");
+      Console.WriteLine("------");
+      string test = "john.doe@gmail@com";
+      Console.WriteLine("abc".Repeat(3));
+      Console.WriteLine(test.Repeat(2));
+      Console.WriteLine($"{test} is valid email : {test.IsValidEmailAddress()}");
+      test = "john.doe@gmail";
+      Console.WriteLine($"{test} is valid email : {test.IsValidEmailAddress()}");
+      test = "john.doe@gmail.com";
+      Console.WriteLine($"{test} is valid email : {test.IsValidEmailAddress()}");
+      Console.WriteLine("Suppress leading zero from 000123456789 : {0}", "000123456789".SuppressLeadingZero());
+
+      Console.WriteLine("Format");
+      Console.WriteLine(@"Hello @firstname @lastname @mail".Format(new { firstname = "John", lastname = "Doe", mail = "john.doe@gmail.com" }));
+
+      Console.WriteLine("SafeSubstring");
+      Console.WriteLine("SafeSubstring".SafeSubstring(0, 5));
+      Console.WriteLine("SafeSubstring".SafeSubstring(0, 50));
+      Console.WriteLine("SafeSubstring".SafeSubstring(20, 5));
+
+      string s = "this is a test";
+      Console.WriteLine(String.Format("{0} ends with s : {1}", s, s.EnsureEndsWith("s")));
+      Console.WriteLine(String.Format("{0} begins with 'this' : {1}", s, s.EnsureStartsWith("un ")));
+
+      Console.WriteLine(ExtensionsLibrary.StringHelper.RandomString(10, false, true, false, false));
+      Console.WriteLine(ExtensionsLibrary.StringHelper.RandomString(10, true, true, true, true));
+
+      Console.WriteLine("The quick brown fox jumps over the lazy dog".LimitTextLength(20, false));
+      Console.WriteLine("The quick brown fox jumps over the lazy dog".LimitTextLength(20, true));
+
+      Console.WriteLine("Server in Electronics, Computers {0}", "Server".In("Electronics", "Computers"));
+      Console.WriteLine("Server in Electronics, Computers, Server {0}", "Server".In("Electronics", "Computers", "Server"));
+
+      string Text = "#Hello world. This is a [test]";
+      Console.WriteLine("Delete chars [ ] : {0}", Text.DeleteChars('[', ']'));
+      Console.WriteLine("Delete chars [ ] : {0}", Text.DeleteChars('e', 'i'));
+    }
+
+    static void TestConversion()
+    {
+      Console.WriteLine("CONVERSION");
+      Console.WriteLine("----------");
+
       Console.WriteLine("123".ConvertTo().ToInt32());
       Console.WriteLine(123f.ConvertTo<Int32>());
       Console.WriteLine(123.ConvertTo<Int64>());
-      Console.WriteLine("123d".ConvertTo<Double>(456, true));
+      Console.WriteLine("Conversion failed with default value : " + "123d".ConvertTo<Double>(456, true));
+      Console.WriteLine("Conversion succeeded : " + "123".ConvertTo<Double>(456, true));
       try
       {
         Console.WriteLine("123d".ConvertTo<Double>(456));
@@ -33,17 +90,18 @@ namespace ConsoleApplication1
       Console.WriteLine("123.456".IsNumeric());
       Console.WriteLine("123,456".IsNumeric());
 
-      Console.WriteLine("SafeSubstring");
-      Console.WriteLine("SafeSubstring".SafeSubstring(0, 5));
-      Console.WriteLine("SafeSubstring".SafeSubstring(0, 50));
-      Console.WriteLine("SafeSubstring".SafeSubstring(20, 5));
-
       var value = "123";
       var numeric = value.ConvertTo().ToInt32();
 
       string sample = null;
       int? k = sample.ConvertTo<int?>(); // returns null 
       DateTime? dn = "01/12/2008".ConvertTo<DateTime?>();
+    }
+
+    static void TestDates()
+    {
+      Console.WriteLine("DATES");
+      Console.WriteLine("-----");
 
       DateTime myDate = DateTime.Today;
 
@@ -98,26 +156,6 @@ namespace ConsoleApplication1
       Console.WriteLine("empty string {0}", string.Empty.IsDate());
       Console.WriteLine("null string {0}", ((string)null).IsDate());
 
-      string s = "this is a test";
-      Console.WriteLine(String.Format("{0} ends with s : {1}", s, s.EnsureEndsWith("s")));
-      Console.WriteLine(String.Format("{0} begins with 'this' : {1}", s, s.EnsureStartsWith("un ")));
-
-      Console.WriteLine(ExtensionsLibrary.StringHelper.RandomString(10, false, true, false, false));
-      Console.WriteLine(ExtensionsLibrary.StringHelper.RandomString(10, true, true, true, true));
-
-      Console.WriteLine("The quick brown fox jumps over the lazy dog".LimitTextLength(20, false));
-      Console.WriteLine("The quick brown fox jumps over the lazy dog".LimitTextLength(20, true));
-
-      Console.WriteLine("Server in Electronics, Computers {0}", "Server".In("Electronics", "Computers"));
-      Console.WriteLine("Server in Electronics, Computers, Server {0}", "Server".In("Electronics", "Computers", "Server"));
-
-      string Text = "#Hello world. This is a [test]";
-      Console.WriteLine("Delete chars [ ] : {0}", Text.DeleteChars('[', ']'));
-      Console.WriteLine("Delete chars [ ] : {0}", Text.DeleteChars('e', 'i'));
-
-      Console.WriteLine("");
-      Console.WriteLine("DATES");
-      Console.WriteLine("-----");
       Console.WriteLine("Last day of month Today : {0}", DateTime.Today.LastDayOfMonth());
       Console.WriteLine("Last day of month 01/02/2016 : {0}", new DateTime(2016, 2, 1).LastDayOfMonth());
 
@@ -125,9 +163,12 @@ namespace ConsoleApplication1
       Console.WriteLine("isDateBetween : today bewteen 01/01/2017 and 31/07/2099 : {0}", DateTime.Today.IsBetween(new DateTime(2017, 1, 1), new DateTime(2099, 07, 31)));
       Console.WriteLine("isDateBetween : today bewteen 01/01/2018 and 31/07/2017 : {0}", DateTime.Today.IsBetween(new DateTime(2018, 1, 1), new DateTime(2017, 07, 31)));
 
-      Console.WriteLine("");
+    }
+
+    static void TestBoolean()
+    {
       Console.WriteLine("BOOLAN");
-      Console.WriteLine("-----");
+      Console.WriteLine("------");
       Console.WriteLine($"TRUE : {true.GetBoolString()}");
       Console.WriteLine($"FALSE : {false.GetBoolString()}");
       Console.WriteLine("y : {0}", "y".AsBoolean());
@@ -137,34 +178,14 @@ namespace ConsoleApplication1
       Console.WriteLine("faux : {0}", "faux".AsBoolean());
       Console.WriteLine("t : {0}", "t".AsBoolean());
       Console.WriteLine("1 : {0}", "1".AsBoolean());
-
-      Console.WriteLine("");
-      Console.WriteLine("NUMBER");
-      Console.WriteLine("-----");
-      Console.WriteLine(5.IsBetween(1, 10));
-      Console.WriteLine(11.IsBetween(1, 10));
-
-      Console.WriteLine("Push a key...");
-      Console.ReadKey();
     }
 
-    static void TestString()
+    static void TestNumber()
     {
-      Console.WriteLine("STRING");
+      Console.WriteLine("NUMBER");
       Console.WriteLine("------");
-      string test = "john.doe@gmail@com";
-      Console.WriteLine("abc".Repeat(3));
-      Console.WriteLine(test.Repeat(2));
-      Console.WriteLine($"{test} is valid email : {test.IsValidEmailAddress()}");
-      test = "john.doe@gmail";
-      Console.WriteLine($"{test} is valid email : {test.IsValidEmailAddress()}");
-      test = "john.doe@gmail.com";
-      Console.WriteLine($"{test} is valid email : {test.IsValidEmailAddress()}");
-      Console.WriteLine("Suppress leading zero from 000123456789 : {0}", "000123456789".SuppressLeadingZero());
-
-      Console.WriteLine("Format");
-      Console.WriteLine(@"Hello @firstname @lastname @mail".Format(new { firstname = "John", lastname = "Doe", mail = "john.doe@gmail.com" }));
-      Console.WriteLine("End string");
+      Console.WriteLine($"5 is between 1 and 10? : {5.IsBetween(1, 10)}");
+      Console.WriteLine($"11 is between 1 and 10? : {11.IsBetween(1, 10)}");
     }
   }
 
