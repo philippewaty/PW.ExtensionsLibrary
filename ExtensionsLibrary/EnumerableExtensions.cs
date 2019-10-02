@@ -214,6 +214,34 @@ namespace ExtensionsLibrary
     }
 
     /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="TSource"></typeparam>
+    /// <typeparam name="TKey"></typeparam>
+    /// <param name="source"></param>
+    /// <param name="keySelector"></param>
+    /// <returns></returns>
+    /// <url>https://stackoverflow.com/questions/489258/linqs-distinct-on-a-particular-property</url>
+    /// <example>
+    /// 	<code>
+    ///     var query = people.DistinctBy(p => p.Id);
+    ///     var query = people.DistinctBy(p => new { p.Id, p.Name });
+    /// 	</code>
+    /// </example>
+    public static IEnumerable<TSource> DistinctBy<TSource, TKey>
+    (this IEnumerable<TSource> source, Func<TSource, TKey> keySelector)
+    {
+      HashSet<TKey> seenKeys = new HashSet<TKey>();
+      foreach (TSource element in source)
+      {
+        if (seenKeys.Add(keySelector(element)))
+        {
+          yield return element;
+        }
+      }
+    }
+
+    /// <summary>
     /// Removes matching items from a sequence
     /// </summary>
     /// <typeparam name="T"></typeparam>
