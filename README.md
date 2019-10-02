@@ -5,6 +5,17 @@ Some of them come from other projects.
 ## Minimum requirements
 Framework 4.5
 
+## List extensions for objects/data type
+- Boolean
+- Comparable
+- Converter
+- DataGridView
+- Date
+- DirectoryInfo
+- Enumerable
+- Object
+- String
+
 ## Sample usage
 #### Strings
 ```C#
