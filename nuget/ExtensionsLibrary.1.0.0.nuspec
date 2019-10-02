@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>ExtensionsLibrary</id>
+        <version>1.0.0</version>
+        <authors>Philippe Waty</authors>
+        <projectUrl>https://github.com/philippewaty/ExtensionsLibrary</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Compilation of useful C# extension methods to boost productivity for the .net developers.</description>
+    </metadata>
+    <files>
+        <file src="..\ExtensionsLibrary\bin\Release\ExtensionsLibrary.dll" target="lib\net45\ExtensionsLibrary.dll" />
+    </files>
+</package>
