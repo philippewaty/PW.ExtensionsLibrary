@@ -70,17 +70,18 @@ namespace ExtensionsLibrary
       return new System.DateTime(value.Year, value.Month, 1);
     }
 
-    ///// <summary>
-    ///// Returns last day of the month
-    ///// </summary>
-    ///// <param name="value">The date</param>
-    ///// <returns></returns>
-    //public static DateTime GetLastDayOfMonth(this DateTime value)
-    //{
-    //  System.DateTime nextMonth = value.AddMonths(1);
+    /// <summary>
+    /// Returns last day of the month
+    /// </summary>
+    /// <param name="value">The date</param>
+    /// <returns></returns>
+    /// <url>https://www.extensionmethod.net/1644/csharp/datetime/getlastdayofmonth</url>
+    public static DateTime GetLastDayOfMonth(this DateTime value)
+    {
+      System.DateTime nextMonth = value.AddMonths(1);
 
-    //  return new System.DateTime(nextMonth.Year, nextMonth.Month, 1).AddDays(-1);
-    //}
+      return new System.DateTime(nextMonth.Year, nextMonth.Month, 1).AddDays(-1);
+    }
 
     /// <summary>
     /// Gets the last the day of month.
