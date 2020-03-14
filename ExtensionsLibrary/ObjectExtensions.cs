@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ExtensionsLibrary
 {
-  public static class ObjectExtentions
+  public static class ObjectExtensions
   {
     /// <summary>
     /// 	Converts an object to the specified target type or returns the default value if
@@ -150,5 +150,41 @@ namespace ExtensionsLibrary
       var result = !ReferenceEquals(target, null);
       return result;
     }
+
+    /// <summary>
+    /// c# version of "Between" clause of sql query with including option
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="item"></param>
+    /// <param name="start"></param>
+    /// <param name="end"></param>
+    /// <param name="includeStart"></param>
+    /// <param name="includeEnd"></param>
+    /// <url>https://www.extensionmethod.net/csharp/between/between</url>
+    /// <returns></returns>
+    /// <example>
+    /// int start = 10;
+    /// int end = 20;
+    /// int num = 10;
+    ///
+    /// bool isBetween = num.Between(start, end);
+    /// bool isNotBetween = num.Between(start, end, false, false);
+    /// </example>
+    public static bool Between<T>(this T item, T start, T end, bool includeStart = true, bool includeEnd = true)
+    {
+      return
+          (
+              (includeStart && Comparer<T>.Default.Compare(item, start) >= 0)
+              ||
+              (!includeStart && Comparer<T>.Default.Compare(item, start) > 0)
+          )
+          &&
+          (
+              (includeEnd && Comparer<T>.Default.Compare(item, end) <= 0)
+              ||
+              (!includeEnd && Comparer<T>.Default.Compare(item, end) < 0)
+          );
+    }
+
   }
 }

@@ -7,6 +7,20 @@ namespace ConsoleApplication1
   {
     static void Main(string[] args)
     {
+      int start = 10;
+      int end = 20;
+      int num = 10;
+
+      bool isBetween = num.Between(start, end);
+      bool isNotBetween = num.Between(start, end, false, false);
+
+      DateTime ddeb = new DateTime(2020, 03, 01, 0, 0, 0);
+      DateTime dfin = new DateTime(2020, 03, 31, 23, 59, 59);
+      DateTime dtest = new DateTime(2020, 03, 14, 13, 59, 30);
+      bool isDateBetween = dtest.Between(ddeb, dfin);
+      DateTime dtest2 = new DateTime(2020, 02, 14, 13, 59, 30);
+      isDateBetween = dtest2.Between(ddeb, dfin);
+
       TestString();
 
       Console.WriteLine("");
