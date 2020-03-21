@@ -50,7 +50,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ExtensionsLibrary\PW.ExtensionsLibrary.csproj">
+    <ProjectReference Include="..\PW.ExtensionsLibrary\PW.ExtensionsLibrary.csproj">
       <Project>{84f3206d-42ce-4910-8601-79ca5fa82ffa}</Project>
       <Name>PW.ExtensionsLibrary</Name>
     </ProjectReference>
