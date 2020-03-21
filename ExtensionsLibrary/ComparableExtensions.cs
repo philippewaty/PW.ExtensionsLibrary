@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ExtensionsLibrary
+namespace PW.ExtensionsLibrary
 {
   /// <summary>
   /// 	Extension methods for all comparable objects eg. string, DateTime, numeric values ...

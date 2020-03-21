@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ExtensionsLibrary
+namespace PW.ExtensionsLibrary
 {
   /// <summary>
   /// 	Generic converter interface used to allow extension methods to be applied.

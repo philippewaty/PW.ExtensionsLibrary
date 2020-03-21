@@ -7,8 +7,8 @@
     <ProjectGuid>{84F3206D-42CE-4910-8601-79CA5FA82FFA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ExtensionsLibrary</RootNamespace>
-    <AssemblyName>ExtensionsLibrary</AssemblyName>
+    <RootNamespace>PW.ExtensionsLibrary</RootNamespace>
+    <AssemblyName>PW.ExtensionsLibrary</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ExtensionsLibrary
+namespace PW.ExtensionsLibrary
 {
   public static class BooleanExtensions
   {

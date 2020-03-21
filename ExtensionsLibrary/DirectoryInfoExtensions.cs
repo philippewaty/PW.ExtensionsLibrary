@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ExtensionsLibrary
+namespace PW.ExtensionsLibrary
 {
   /// <summary>
   /// 	Extension methods for the DirectoryInfo class

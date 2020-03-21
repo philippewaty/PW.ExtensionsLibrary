@@ -6,7 +6,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace ExtensionsLibrary
+namespace PW.ExtensionsLibrary
 {
   public static class StringExtensions
   {
@@ -176,34 +176,24 @@ namespace ExtensionsLibrary
       return n > maxLength ? value.Substring(0, Math.Min(maxLength - minLength, n)) + ellipsis : value;
     }
 
+    /// <summary>
+    /// Converts a string to a boolean value if possible
+    /// </summary>
+    /// <param name="value">The value.</param>
+    /// <returns>
+    ///   <c>true</c> if the specified value is boolean; otherwise, <c>false</c>.
+    /// </returns>
+    /// <exception cref="ArgumentException">Value is not a boolean value.</exception>
+    /// <url>http://extensionmethod.net/5427/csharp/string/asboolean</url>
     public static bool AsBoolean(this string value)
     {
+      string[] booleanValues = new string[] { "false", "f", "true", "t", "yes", "no", "y", "n", "vrai", "faux" };
       var val = value.ToLower().Trim();
-      if (val == "false")
-        return true;
-      if (val == "f")
-        return true;
-      if (val == "true")
-        return true;
-      if (val == "t")
-        return true;
-      if (val == "yes")
-        return true;
-      if (val == "no")
-        return true;
-      if (val == "y")
-        return true;
-      if (val == "n")
-        return true;
-      if (val == "vrai")
-        return true;
-      if (val == "faux")
-        return true;
-      return false;
+      return booleanValues.Contains(val);
     }
 
     /// <summary>
-    /// Converts a string to a boolean value if possible or throws an exception
+    /// Check if a string is a boolean value and throws an exception if not
     /// </summary>
     /// <param name="value">The value.</param>
     /// <returns>

@@ -1,5 +1,5 @@
 ﻿using System;
-using ExtensionsLibrary;
+using PW.ExtensionsLibrary;
 
 namespace ConsoleApplication1
 {
@@ -65,8 +65,8 @@ namespace ConsoleApplication1
       Console.WriteLine(String.Format("{0} ends with s : {1}", s, s.EnsureEndsWith("s")));
       Console.WriteLine(String.Format("{0} begins with 'this' : {1}", s, s.EnsureStartsWith("un ")));
 
-      Console.WriteLine(ExtensionsLibrary.StringHelper.RandomString(10, false, true, false, false));
-      Console.WriteLine(ExtensionsLibrary.StringHelper.RandomString(10, true, true, true, true));
+      Console.WriteLine(StringHelper.RandomString(10, false, true, false, false));
+      Console.WriteLine(StringHelper.RandomString(10, true, true, true, true));
 
       Console.WriteLine("The quick brown fox jumps over the lazy dog".LimitTextLength(20, false));
       Console.WriteLine("The quick brown fox jumps over the lazy dog".LimitTextLength(20, true));
