@@ -16,17 +16,17 @@ Framework 4.5
 - Object
 - String
 
-##List extensions for Boolean
+## List extensions for Boolean
 - GetBoolString(this bool value) : returns "Yes" or "No"
 
-##List extensions for Comparable
+## List extensions for Comparable
 - IsBetween(this T value, T minValue, T maxValue)
 - IsBetween(this T value, T minValue, T maxValue, , IComparer comparer)
 
-##List extensions for DataGridView
+## List extensions for DataGridView
 - DoubleBuffered(this DataGridView dgv, bool setting) : Prevents DataGridView from flickering
 
-##List extensions for Date
+## List extensions for Date
 - CalculateAge(this DateTime dateOfBirth) : Calculate age in year since a given date until today
 - CalculateAge(this DateTime dateOfBirth, DateTime dateReference) : Calculate age in year since a given date until reference date
 - GetCountDaysOfMonth(this DateTime value) : Returns number of days in a month
@@ -45,7 +45,7 @@ Framework 4.5
 - SetTime(this DateTimeOffset date, TimeSpan time) : Sets the time on the specified DateTimeOffest value using the local system time zone.
 - ToLocalDateTime(this DateTimeOffset dateTimeUtc, TimeZoneInfo localTimeZone) : Converts a DateTimeOffset into a DateTime using the specified time zone.
 
-##List extensions for DirectoryInfo
+## List extensions for DirectoryInfo
 - GetFiles(this DirectoryInfo directory, params string[] patterns) : Gets all files in the directory matching one of the several (!) supplied patterns (instead of just one in the regular implementation).
 - FindFileRecursive(this DirectoryInfo directory, string pattern) : Searches the provided directory recursively and returns the first file matching the provided pattern.
 - FindFileRecursive(this DirectoryInfo directory, Func<FileInfo, bool> predicate) : Searches the provided directory recursively and returns the first file matching to the provided predicate.
