@@ -55,15 +55,15 @@ namespace PW.ExtensionsLibrary
     #region Conversion    
 
     /// <summary>
-    /// 	Converts a string to an Int32 value
+    /// Converts a string to an Int32 value
     /// </summary>
     /// <param name = "value">The value.</param>
     /// <returns></returns>
     /// <example>
-    /// 	<code>
-    /// 		var value = "123";
-    /// 		var numeric = value.ConvertTo().ToInt32();
-    /// 	</code>
+    /// <code>
+    /// 	var value = "123";
+    /// 	var numeric = value.ConvertTo().ToInt32();
+    /// </code>
     /// </example>
     public static int ToInt32(this IConverter<string> value)
     {
@@ -71,17 +71,17 @@ namespace PW.ExtensionsLibrary
     }
 
     /// <summary>
-    /// 	Converts a string to an Int32 value
+    /// Converts a string to an Int32 value
     /// </summary>
     /// <param name = "value">The value.</param>
     /// <param name = "defaultValue">The default value.</param>
     /// <param name = "ignoreException">if set to <c>true</c> any parsing exception will be ignored.</param>
     /// <returns></returns>
     /// <example>
-    /// 	<code>
-    /// 		var value = "123";
-    /// 		var numeric = value.ConvertTo().ToInt32();
-    /// 	</code>
+    /// <code>
+    /// 	var value = "123";
+    /// 	var numeric = value.ConvertTo().ToInt32();
+    /// </code>
     /// </example>
     public static int ToInt32(this IConverter<string> value, int defaultValue, bool ignoreException)
     {

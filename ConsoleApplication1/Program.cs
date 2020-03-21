@@ -35,6 +35,9 @@ namespace ConsoleApplication1
       Console.WriteLine("");
       TestNumber();
 
+      Console.WriteLine("");
+      TestDirectoryInfo();
+
       Console.WriteLine("Push a key...");
       Console.ReadKey();
     }
@@ -120,7 +123,6 @@ namespace ConsoleApplication1
       DateTime myDate = DateTime.Today;
 
       Console.WriteLine(myDate.GetFirstDayOfMonth().ToString("dd/MM/yyyy"));
-      Console.WriteLine(myDate.LastDayOfMonth().ToString("dd MMMM yyyy"));
 
       Console.WriteLine(String.Format("Is date {0} is a weekend? : {1}", myDate.ToString("dd MMMM yyyy"), myDate.IsWeekend()));
       myDate = new DateTime(2012, 12, 23);
@@ -170,8 +172,8 @@ namespace ConsoleApplication1
       Console.WriteLine("empty string {0}", string.Empty.IsDate());
       Console.WriteLine("null string {0}", ((string)null).IsDate());
 
-      Console.WriteLine("Last day of month Today : {0}", DateTime.Today.LastDayOfMonth());
-      Console.WriteLine("Last day of month 01/02/2016 : {0}", new DateTime(2016, 2, 1).LastDayOfMonth());
+      Console.WriteLine("Last day of month Today : {0}", DateTime.Today.GetLastDayOfMonth());
+      Console.WriteLine("Last day of month 01/02/2016 : {0}", new DateTime(2016, 2, 1).GetLastDayOfMonth());
 
       Console.WriteLine("isDateBetween : today bewteen 01/01/2017 and 31/07/2017 : {0}", DateTime.Today.IsBetween(new DateTime(2017, 1, 1), new DateTime(2017, 07, 31)));
       Console.WriteLine("isDateBetween : today bewteen 01/01/2017 and 31/07/2099 : {0}", DateTime.Today.IsBetween(new DateTime(2017, 1, 1), new DateTime(2099, 07, 31)));
@@ -200,6 +202,16 @@ namespace ConsoleApplication1
       Console.WriteLine("------");
       Console.WriteLine($"5 is between 1 and 10? : {5.IsBetween(1, 10)}");
       Console.WriteLine($"11 is between 1 and 10? : {11.IsBetween(1, 10)}");
+    }
+
+    static void TestDirectoryInfo()
+    {
+      System.IO.DirectoryInfo di = new System.IO.DirectoryInfo(Environment.GetFolderPath(Environment.SpecialFolder.Windows));
+      System.IO.FileInfo[] fis = di.GetFiles();
+
+      Console.WriteLine(string.Format("Number of files : {0}", di.GetFiles().Length));
+      Console.WriteLine(string.Format("Number of files dll + txt: {0}", di.GetFiles("*.dll","*.txt").Length));
+
     }
   }
 

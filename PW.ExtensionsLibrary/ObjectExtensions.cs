@@ -13,7 +13,7 @@ namespace PW.ExtensionsLibrary
   public static class ObjectExtensions
   {
     /// <summary>
-    /// 	Converts an object to the specified target type or returns the default value if
+    /// Converts an object to the specified target type or returns the default value if
     ///     those 2 types are not convertible.
     ///     <para>
     ///     If the <paramref name="value"/> can't be convert even if the types are 
@@ -28,16 +28,16 @@ namespace PW.ExtensionsLibrary
     }
 
     /// <summary>
-    /// 	Converts the specified value to a different type.
+    /// Converts the specified value to a different type.
     /// </summary>
     /// <typeparam name = "T"></typeparam>
     /// <param name = "value">The value.</param>
     /// <returns>An universal converter suppliying additional target conversion methods</returns>
     /// <example>
-    /// 	<code>
-    /// 		var value = "123";
-    /// 		var numeric = value.ConvertTo().ToInt32();
-    /// 	</code>
+    /// <code>
+    /// 	var value = "123";
+    /// 	var numeric = value.ConvertTo().ToInt32();
+    /// </code>
     /// </example>
     public static IConverter<T> ConvertTo<T>(this T value)
     {
@@ -45,7 +45,7 @@ namespace PW.ExtensionsLibrary
     }
 
     /// <summary>
-    /// 	Converts an object to the specified target type or returns the default value if
+    /// Converts an object to the specified target type or returns the default value if
     ///     those 2 types are not convertible.
     ///     <para>
     ///     If the <paramref name="value"/> can't be convert even if the types are 
@@ -81,7 +81,7 @@ namespace PW.ExtensionsLibrary
     }
 
     /// <summary>
-    /// 	Converts an object to the specified target type or returns the default value if
+    /// Converts an object to the specified target type or returns the default value if
     ///     those 2 types are not convertible.
     ///     <para>Any exceptions are optionally ignored (<paramref name="ignoreException"/>).</para>
     ///     <para>
@@ -127,23 +127,23 @@ namespace PW.ExtensionsLibrary
     }
 
     /// <summary>
-    /// 	Returns TRUE, if specified target reference is equals with null reference.
-    /// 	Othervise returns FALSE.
+    /// Returns TRUE, if specified target reference is equals with null reference.
+    /// Othervise returns FALSE.
     /// </summary>
     /// <typeparam name = "T">Type of target.</typeparam>
     /// <param name = "target">Target reference. Can be null.</param>
     /// <remarks>
-    /// 	Some types has overloaded '==' and '!=' operators.
-    /// 	So the code "null == ((MyClass)null)" can returns <c>false</c>.
-    /// 	The most correct way how to test for null reference is using "System.Object.ReferenceEquals(object, object)" method.
-    /// 	However the notation with ReferenceEquals method is long and uncomfortable - this extension method solve it.
+    /// Some types has overloaded '==' and '!=' operators.
+    /// So the code "null == ((MyClass)null)" can returns <c>false</c>.
+    /// The most correct way how to test for null reference is using "System.Object.ReferenceEquals(object, object)" method.
+    /// However the notation with ReferenceEquals method is long and uncomfortable - this extension method solve it.
     /// 
-    /// 	Contributed by tencokacistromy, http://www.codeplex.com/site/users/view/tencokacistromy
+    /// Contributed by tencokacistromy, http://www.codeplex.com/site/users/view/tencokacistromy
     /// </remarks>
     /// <example>
-    /// 	MyClass someObject = GetSomeObject();
-    /// 	if ( someObject.IsNotNull() ) { /* the someObject is not null */ }
-    /// 	else { /* the someObject is null */ }
+    /// MyClass someObject = GetSomeObject();
+    /// if ( someObject.IsNotNull() ) { /* the someObject is not null */ }
+    /// else { /* the someObject is null */ }
     /// </example>
     public static bool IsNotNull<T>(this T target)
     {

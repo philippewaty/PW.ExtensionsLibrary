@@ -8,23 +8,23 @@ using System.Threading.Tasks;
 namespace PW.ExtensionsLibrary
 {
   /// <summary>
-  /// 	Extension methods for the DirectoryInfo class
+  /// Extension methods for the DirectoryInfo class
   /// </summary>
   public static class DirectoryInfoExtensions
   {
     /// <summary>
-    /// 	Gets all files in the directory matching one of the several (!) supplied patterns (instead of just one in the regular implementation).
+    /// Gets all files in the directory matching one of the several (!) supplied patterns (instead of just one in the regular implementation).
     /// </summary>
     /// <param name = "directory">The directory.</param>
     /// <param name = "patterns">The patterns.</param>
     /// <returns>The matching files</returns>
     /// <remarks>
-    /// 	This methods is quite perfect to be used in conjunction with the newly created FileInfo-Array extension methods.
+    /// This methods is quite perfect to be used in conjunction with the newly created FileInfo-Array extension methods.
     /// </remarks>
     /// <example>
-    /// 	<code>
-    /// 		var files = directory.GetFiles("*.txt", "*.xml");
-    /// 	</code>
+    /// <code>
+    /// var files = directory.GetFiles("*.txt", "*.xml");
+    /// </code>
     /// </example>
     public static FileInfo[] GetFiles(this DirectoryInfo directory, params string[] patterns)
     {
@@ -35,16 +35,16 @@ namespace PW.ExtensionsLibrary
     }
 
     /// <summary>
-    /// 	Searches the provided directory recursively and returns the first file matching the provided pattern.
+    /// Searches the provided directory recursively and returns the first file matching the provided pattern.
     /// </summary>
     /// <param name = "directory">The directory.</param>
     /// <param name = "pattern">The pattern.</param>
     /// <returns>The found file</returns>
     /// <example>
-    /// 	<code>
-    /// 		var directory = new DirectoryInfo(@"c:\");
-    /// 		var file = directory.FindFileRecursive("win.ini");
-    /// 	</code>
+    /// <code>
+    /// var directory = new DirectoryInfo(@"c:\");
+    /// var file = directory.FindFileRecursive("win.ini");
+    /// </code>
     /// </example>
     public static FileInfo FindFileRecursive(this DirectoryInfo directory, string pattern)
     {
@@ -62,16 +62,16 @@ namespace PW.ExtensionsLibrary
     }
 
     /// <summary>
-    /// 	Searches the provided directory recursively and returns the first file matching to the provided predicate.
+    /// Searches the provided directory recursively and returns the first file matching to the provided predicate.
     /// </summary>
     /// <param name = "directory">The directory.</param>
     /// <param name = "predicate">The predicate.</param>
     /// <returns>The found file</returns>
     /// <example>
-    /// 	<code>
-    /// 		var directory = new DirectoryInfo(@"c:\");
-    /// 		var file = directory.FindFileRecursive(f => f.Extension == ".ini");
-    /// 	</code>
+    /// <code>
+    /// var directory = new DirectoryInfo(@"c:\");
+    /// var file = directory.FindFileRecursive(f => f.Extension == ".ini");
+    /// </code>
     /// </example>
     public static FileInfo FindFileRecursive(this DirectoryInfo directory, Func<FileInfo, bool> predicate)
     {
@@ -91,19 +91,19 @@ namespace PW.ExtensionsLibrary
     }
 
     /// <summary>
-    /// 	Searches the provided directory recursively and returns the all files matching the provided pattern.
+    /// Searches the provided directory recursively and returns the all files matching the provided pattern.
     /// </summary>
     /// <param name = "directory">The directory.</param>
     /// <param name = "pattern">The pattern.</param>
     /// <remarks>
-    /// 	This methods is quite perfect to be used in conjunction with the newly created FileInfo-Array extension methods.
+    /// This methods is quite perfect to be used in conjunction with the newly created FileInfo-Array extension methods.
     /// </remarks>
     /// <returns>The found files</returns>
     /// <example>
-    /// 	<code>
-    /// 		var directory = new DirectoryInfo(@"c:\");
-    /// 		var files = directory.FindFilesRecursive("*.ini");
-    /// 	</code>
+    /// <code>
+    /// var directory = new DirectoryInfo(@"c:\");
+    /// var files = directory.FindFilesRecursive("*.ini");
+    /// </code>
     /// </example>
     public static FileInfo[] FindFilesRecursive(this DirectoryInfo directory, string pattern)
     {
@@ -119,19 +119,19 @@ namespace PW.ExtensionsLibrary
     }
 
     /// <summary>
-    /// 	Searches the provided directory recursively and returns the all files matching to the provided predicate.
+    /// Searches the provided directory recursively and returns the all files matching to the provided predicate.
     /// </summary>
     /// <param name = "directory">The directory.</param>
     /// <param name = "predicate">The predicate.</param>
     /// <returns>The found files</returns>
     /// <remarks>
-    /// 	This methods is quite perfect to be used in conjunction with the newly created FileInfo-Array extension methods.
+    /// This methods is quite perfect to be used in conjunction with the newly created FileInfo-Array extension methods.
     /// </remarks>
     /// <example>
-    /// 	<code>
-    /// 		var directory = new DirectoryInfo(@"c:\");
-    /// 		var files = directory.FindFilesRecursive(f => f.Extension == ".ini");
-    /// 	</code>
+    /// <code>
+    /// var directory = new DirectoryInfo(@"c:\");
+    /// var files = directory.FindFilesRecursive(f => f.Extension == ".ini");
+    /// </code>
     /// </example>
     public static FileInfo[] FindFilesRecursive(this DirectoryInfo directory, Func<FileInfo, bool> predicate)
     {

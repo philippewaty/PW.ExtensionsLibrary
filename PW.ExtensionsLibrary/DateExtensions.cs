@@ -71,7 +71,7 @@ namespace PW.ExtensionsLibrary
     }
 
     /// <summary>
-    /// Returns last day of the month
+    /// Returns last day of the month in DateTime format
     /// </summary>
     /// <param name="value">The date</param>
     /// <returns></returns>
@@ -83,18 +83,18 @@ namespace PW.ExtensionsLibrary
       return new System.DateTime(nextMonth.Year, nextMonth.Month, 1).AddDays(-1);
     }
 
-    /// <summary>
-    /// Gets the last the day of month.
-    /// </summary>
-    /// <param name="date">The date.</param>
-    /// <returns></returns>
-    public static DateTime LastDayOfMonth(this DateTime date)
-    {
-      return new DateTime(date.Year, date.Month, DateTime.DaysInMonth(date.Year, date.Month));
-    }
+    ///// <summary>
+    ///// Gets the last the day of month.
+    ///// </summary>
+    ///// <param name="date">The date.</param>
+    ///// <returns></returns>
+    //public static DateTime LastDayOfMonth(this DateTime date)
+    //{
+    //  return new DateTime(date.Year, date.Month, DateTime.DaysInMonth(date.Year, date.Month));
+    //}
 
     /// <summary>
-    /// Indique si la date spécifiée est la date du jour
+    /// Indicates if the specified date is the date of the day
     /// </summary>
     /// <param name="value">La date</param>
     /// <returns><c>true</c> si la date spécifiée est la date du jour, sinon <c>false</c>.</returns>
@@ -104,7 +104,7 @@ namespace PW.ExtensionsLibrary
     }
 
     /// <summary>
-    /// Indique si la date spécifiée est un weekend
+    /// Indicates if the specified date is a weekend
     /// </summary>
     /// <param name="value">La date</param>
     /// <returns><c>true</c> si la date spécifiée est un weekend, sinon <c>false</c>.</returns>
@@ -115,7 +115,7 @@ namespace PW.ExtensionsLibrary
 
 
     /// <summary>
-    /// Renvoie le n° de la semaine de la date donnée
+    /// Returns the week's number from the given date
     /// </summary>
     /// <param name="value">La date</param>
     /// <returns>Le n° de la semaine</returns>
@@ -146,12 +146,12 @@ namespace PW.ExtensionsLibrary
     }
 
     /// <summary>
-    /// 	Sets the time on the specified DateTime value.
+    /// Sets the time on the specified DateTime value.
     /// </summary>
     /// <param name = "date">The base date.</param>
     /// <param name = "time">The TimeSpan to be applied.</param>
     /// <returns>
-    /// 	The DateTime including the new time value
+    /// The DateTime including the new time value
     /// </returns>
     public static DateTime SetTime(this DateTime date, TimeSpan time)
     {
@@ -159,7 +159,7 @@ namespace PW.ExtensionsLibrary
     }
 
     /// <summary>
-    /// 	Sets the time on the specified DateTime value using the specified time zone.
+    /// Sets the time on the specified DateTime value using the specified time zone.
     /// </summary>
     /// <param name = "date">The base date.</param>
     /// <param name = "time">The TimeSpan to be applied.</param>
@@ -173,7 +173,7 @@ namespace PW.ExtensionsLibrary
     }
 
     /// <summary>
-    /// 	Sets the time on the specified DateTimeOffset value using the local system time zone.
+    /// Sets the time on the specified DateTimeOffset value using the local system time zone.
     /// </summary>
     /// <param name = "date">The base date.</param>
     /// <param name = "hours">The hours to be set.</param>
@@ -186,7 +186,7 @@ namespace PW.ExtensionsLibrary
     }
 
     /// <summary>
-    /// 	Converts a DateTime into a DateTimeOffset using the local system time zone.
+    /// Converts a DateTime into a DateTimeOffset using the local system time zone.
     /// </summary>
     /// <param name = "localDateTime">The local DateTime.</param>
     /// <returns>The converted DateTimeOffset</returns>
@@ -196,7 +196,7 @@ namespace PW.ExtensionsLibrary
     }
 
     /// <summary>
-    /// 	Converts a DateTime into a DateTimeOffset using the specified time zone.
+    /// Converts a DateTime into a DateTimeOffset using the specified time zone.
     /// </summary>
     /// <param name = "localDateTime">The local DateTime.</param>
     /// <param name = "localTimeZone">The local time zone.</param>
@@ -212,20 +212,18 @@ namespace PW.ExtensionsLibrary
     }
 
     /// <summary>
-    /// 	Sets the time on the specified DateTime value using the local system time zone.
+    /// Sets the time on the specified DateTimeOffset value using the local system time zone.
     /// </summary>
     /// <param name = "date">The base date.</param>
     /// <param name = "time">The TimeSpan to be applied.</param>
-    /// <returns>
-    /// 	The DateTimeOffset including the new time value
-    /// </returns>
+    /// <returns>The DateTimeOffset including the new time value</returns>
     public static DateTimeOffset SetTime(this DateTimeOffset date, TimeSpan time)
     {
       return date.SetTime(time, null);
     }
 
     /// <summary>
-    /// 	Converts a DateTimeOffset into a DateTime using the specified time zone.
+    /// Converts a DateTimeOffset into a DateTime using the specified time zone.
     /// </summary>
     /// <param name = "dateTimeUtc">The base DateTimeOffset.</param>
     /// <param name = "localTimeZone">The time zone to be used for conversion.</param>

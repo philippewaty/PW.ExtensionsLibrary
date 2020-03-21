@@ -7,20 +7,20 @@ using System.Threading.Tasks;
 namespace PW.ExtensionsLibrary
 {
   /// <summary>
-  /// 	Extension methods for all kinds of (typed) enumerable data (Array, List, ...)
+  /// Extension methods for all kinds of (typed) enumerable data (Array, List, ...)
   /// </summary>
   public static class EnumerableExtensions
   {
     /// <summary>
-    /// 	Converts all items of a list and returns them as enumerable.
+    /// Converts all items of a list and returns them as enumerable.
     /// </summary>
     /// <typeparam name = "TSource">The source data type</typeparam>
     /// <typeparam name = "TTarget">The target data type</typeparam>
     /// <param name = "source">The source data.</param>
     /// <returns>The converted data</returns>
     /// <example>
-    /// 	var values = new[] { "1", "2", "3" };
-    /// 	values.ConvertList&lt;string, int&gt;().ForEach(Console.WriteLine);
+    /// var values = new[] { "1", "2", "3" };
+    /// values.ConvertList&lt;string, int&gt;().ForEach(Console.WriteLine);
     /// </example>
     public static IEnumerable<TTarget> ConvertList<TSource, TTarget>(this IEnumerable<TSource> source)
     {
@@ -30,17 +30,17 @@ namespace PW.ExtensionsLibrary
     }
 
     /// <summary>
-    /// 	Performs an action for each item in the enumerable
+    /// Performs an action for each item in the enumerable
     /// </summary>
     /// <typeparam name = "T">The enumerable data type</typeparam>
     /// <param name = "values">The data values.</param>
     /// <param name = "action">The action to be performed.</param>
     /// <example>
-    /// 	var values = new[] { "1", "2", "3" };
-    /// 	values.ConvertList&lt;string, int&gt;().ForEach(Console.WriteLine);
+    /// var values = new[] { "1", "2", "3" };
+    /// values.ConvertList&lt;string, int&gt;().ForEach(Console.WriteLine);
     /// </example>
     /// <remarks>
-    /// 	This method was intended to return the passed values to provide method chaining. Howver due to defered execution the compiler would actually never run the entire code at all.
+    /// This method was intended to return the passed values to provide method chaining. Howver due to defered execution the compiler would actually never run the entire code at all.
     /// </remarks>
     public static void ForEach<T>(this IEnumerable<T> values, Action<T> action)
     {
@@ -78,7 +78,7 @@ namespace PW.ExtensionsLibrary
     }
 
     /// <summary>
-    /// 	Returns the maximum item based on a provided selector.
+    /// Returns the maximum item based on a provided selector.
     /// </summary>
     /// <typeparam name = "TItem">The item type</typeparam>
     /// <typeparam name = "TValue">The value item</typeparam>
@@ -87,10 +87,10 @@ namespace PW.ExtensionsLibrary
     /// <param name = "maxValue">The max value as output parameter.</param>
     /// <returns>The maximum item</returns>
     /// <example>
-    /// 	<code>
-    /// 		int age;
-    /// 		var oldestPerson = persons.MaxItem(p =&gt; p.Age, out age);
-    /// 	</code>
+    /// <code>
+    /// 	int age;
+    /// 	var oldestPerson = persons.MaxItem(p =&gt; p.Age, out age);
+    /// </code>
     /// </example>
     public static TItem MaxItem<TItem, TValue>(this IEnumerable<TItem> items, Func<TItem, TValue> selector, out TValue maxValue)
       where TItem : class
@@ -117,7 +117,7 @@ namespace PW.ExtensionsLibrary
     }
 
     /// <summary>
-    /// 	Returns the maximum item based on a provided selector.
+    /// Returns the maximum item based on a provided selector.
     /// </summary>
     /// <typeparam name = "TItem">The item type</typeparam>
     /// <typeparam name = "TValue">The value item</typeparam>
@@ -125,9 +125,9 @@ namespace PW.ExtensionsLibrary
     /// <param name = "selector">The selector.</param>
     /// <returns>The maximum item</returns>
     /// <example>
-    /// 	<code>
-    /// 		var oldestPerson = persons.MaxItem(p =&gt; p.Age);
-    /// 	</code>
+    /// <code>
+    /// 	var oldestPerson = persons.MaxItem(p =&gt; p.Age);
+    /// </code>
     /// </example>
     public static TItem MaxItem<TItem, TValue>(this IEnumerable<TItem> items, Func<TItem, TValue> selector)
       where TItem : class
@@ -139,7 +139,7 @@ namespace PW.ExtensionsLibrary
     }
 
     /// <summary>
-    /// 	Returns the minimum item based on a provided selector.
+    /// Returns the minimum item based on a provided selector.
     /// </summary>
     /// <typeparam name = "TItem">The item type</typeparam>
     /// <typeparam name = "TValue">The value item</typeparam>
@@ -148,10 +148,10 @@ namespace PW.ExtensionsLibrary
     /// <param name = "minValue">The min value as output parameter.</param>
     /// <returns>The minimum item</returns>
     /// <example>
-    /// 	<code>
-    /// 		int age;
-    /// 		var youngestPerson = persons.MinItem(p =&gt; p.Age, out age);
-    /// 	</code>
+    /// <code>
+    /// 	int age;
+    /// 	var youngestPerson = persons.MinItem(p =&gt; p.Age, out age);
+    /// </code>
     /// </example>
     public static TItem MinItem<TItem, TValue>(this IEnumerable<TItem> items, Func<TItem, TValue> selector, out TValue minValue)
       where TItem : class
@@ -176,7 +176,7 @@ namespace PW.ExtensionsLibrary
     }
 
     /// <summary>
-    /// 	Returns the minimum item based on a provided selector.
+    /// Returns the minimum item based on a provided selector.
     /// </summary>
     /// <typeparam name = "TItem">The item type</typeparam>
     /// <typeparam name = "TValue">The value item</typeparam>
@@ -184,9 +184,9 @@ namespace PW.ExtensionsLibrary
     /// <param name = "selector">The selector.</param>
     /// <returns>The minimum item</returns>
     /// <example>
-    /// 	<code>
-    /// 		var youngestPerson = persons.MinItem(p =&gt; p.Age);
-    /// 	</code>
+    /// <code>
+    /// 	var youngestPerson = persons.MinItem(p =&gt; p.Age);
+    /// </code>
     /// </example>
     public static TItem MinItem<TItem, TValue>(this IEnumerable<TItem> items, Func<TItem, TValue> selector)
       where TItem : class
@@ -206,7 +206,7 @@ namespace PW.ExtensionsLibrary
     ///<typeparam name = "TKey"></typeparam>
     ///<returns></returns>
     /// <remarks>
-    /// 	Contributed by Michael T, http://about.me/MichaelTran
+    /// Contributed by Michael T, http://about.me/MichaelTran
     /// </remarks>
     public static IEnumerable<T> Distinct<T, TKey>(this IEnumerable<T> source, Func<T, TKey> expression)
     {
@@ -223,10 +223,10 @@ namespace PW.ExtensionsLibrary
     /// <returns></returns>
     /// <url>https://stackoverflow.com/questions/489258/linqs-distinct-on-a-particular-property</url>
     /// <example>
-    /// 	<code>
+    /// <code>
     ///     var query = people.DistinctBy(p => p.Id);
     ///     var query = people.DistinctBy(p => new { p.Id, p.Name });
-    /// 	</code>
+    /// </code>
     /// </example>
     public static IEnumerable<TSource> DistinctBy<TSource, TKey>
     (this IEnumerable<TSource> source, Func<TSource, TKey> keySelector)
@@ -250,8 +250,8 @@ namespace PW.ExtensionsLibrary
     /// <returns></returns>
     /// 
     /// <remarks>
-    /// 	Renamed by James Curran, to match corresponding HashSet.RemoveWhere()
-    /// 	</remarks>
+    /// Renamed by James Curran, to match corresponding HashSet.RemoveWhere()
+    /// </remarks>
 
     public static IEnumerable<T> RemoveWhere<T>(this IEnumerable<T> source, Predicate<T> predicate)
     {
@@ -271,7 +271,7 @@ namespace PW.ExtensionsLibrary
     ///<typeparam name = "T"></typeparam>
     ///<returns></returns>
     /// <remarks>
-    /// 	Contributed by Michael T, http://about.me/MichaelTran
+    /// Contributed by Michael T, http://about.me/MichaelTran
     /// </remarks>
     [Obsolete("Use RemoveWhere instead..")]
     public static IEnumerable<T> RemoveAll<T>(this IEnumerable<T> source, Predicate<T> predicate)
@@ -293,13 +293,13 @@ namespace PW.ExtensionsLibrary
     ///<typeparam name="T"></typeparam>
     ///<returns></returns>
     /// <example>
-    /// 	<code>
-    /// 		var values = new[] { 1, 2, 3, 4, 5 };
+    /// <code>
+    /// 	var values = new[] { 1, 2, 3, 4, 5 };
     ///			string csv = values.ToCSV(';');
-    /// 	</code>
+    /// </code>
     /// </example>
     /// <remarks>
-    /// 	Contributed by Moses, http://mosesofegypt.net
+    /// Contributed by Moses, http://mosesofegypt.net
     /// </remarks>
     public static string ToCSV<T>(this IEnumerable<T> source, char separator)
     {
@@ -318,13 +318,13 @@ namespace PW.ExtensionsLibrary
     ///<typeparam name="T"></typeparam>
     ///<returns></returns>
     /// <example>
-    /// 	<code>
-    /// 		var values = new[] {1, 2, 3, 4, 5};
+    /// <code>
+    /// 	var values = new[] {1, 2, 3, 4, 5};
     ///			string csv = values.ToCSV();
-    /// 	</code>
+    /// </code>
     /// </example>
     /// <remarks>
-    /// 	Contributed by Moses, http://mosesofegypt.net
+    /// Contributed by Moses, http://mosesofegypt.net
     /// </remarks>
     public static string ToCSV<T>(this IEnumerable<T> source)
     {
@@ -623,10 +623,10 @@ namespace PW.ExtensionsLibrary
     /// <param name="formatString">An optional string formatter for the items in the output list.</param>
     /// <returns>The enumerable collection of items concatenated into a single string.</returns>
     /// <example>
-    /// 	<code>
-    /// 		List&lt;double&gt; doubles = new List&lt;double&gt;() { 123.4567, 123.4, 123.0, 4, 5 };
-    /// 		string concatenated = doubles.ConcatWith(":", "0.00");  // concatenated = 123.46:123.40:123.00:4.00:5.00
-    /// 	</code>
+    /// <code>
+    /// 	List&lt;double&gt; doubles = new List&lt;double&gt;() { 123.4567, 123.4, 123.0, 4, 5 };
+    /// 	string concatenated = doubles.ConcatWith(":", "0.00");  // concatenated = 123.46:123.40:123.00:4.00:5.00
+    /// </code>
     /// </example>
     /// <remarks>
     ///     Contributed by Joseph Eddy, http://www.codeplex.com/site/users/view/jceddy
