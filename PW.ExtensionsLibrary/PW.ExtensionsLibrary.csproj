@@ -51,6 +51,7 @@
     <Compile Include="DateExtensions.cs" />
     <Compile Include="DirectoryInfoExtensions.cs" />
     <Compile Include="EnumerableExtensions.cs" />
+    <Compile Include="EnumExtension.cs" />
     <Compile Include="IConverter.cs" />
     <Compile Include="ObjectExtensions.cs" />
     <Compile Include="StringExtensions.cs" />

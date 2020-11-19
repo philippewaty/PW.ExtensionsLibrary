@@ -1,10 +1,21 @@
 ﻿using System;
 using PW.ExtensionsLibrary;
+using System.ComponentModel;
 
 namespace ConsoleApplication1
 {
   class Program
   {
+    public enum TraficLightsColors
+    {
+      [Description("Indicates Stop")]
+      Red,
+      [Description("Indicates Nothing")]
+      Blue,
+      [Description("Indicates Go")]
+      Green
+    }
+
     static void Main(string[] args)
     {
       int start = 10;
@@ -37,6 +48,9 @@ namespace ConsoleApplication1
 
       Console.WriteLine("");
       TestDirectoryInfo();
+
+      Console.WriteLine("");
+      TestEnum();
 
       Console.WriteLine("Push a key...");
       Console.ReadKey();
@@ -212,6 +226,18 @@ namespace ConsoleApplication1
       Console.WriteLine(string.Format("Number of files : {0}", di.GetFiles().Length));
       Console.WriteLine(string.Format("Number of files dll + txt: {0}", di.GetFiles("*.dll","*.txt").Length));
 
+    }
+
+    static void TestEnum()
+    {
+      Console.WriteLine("ENUM");
+      Console.WriteLine("----");
+      Console.WriteLine($"{TraficLightsColors.Blue} = {TraficLightsColors.Blue.GetEnumDescription()}");
+      Console.WriteLine($"{TraficLightsColors.Green} = {TraficLightsColors.Green.GetEnumDescription()}");
+      Console.WriteLine($"{TraficLightsColors.Red} = {TraficLightsColors.Red.GetEnumDescription()}");
+      Console.WriteLine("");
+      string stop = "Indicates Stop";
+      Console.WriteLine($"Indicates Stop = {stop.ToEnum<TraficLightsColors>()}");
     }
   }
 

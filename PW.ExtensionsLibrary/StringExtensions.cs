@@ -54,6 +54,13 @@ namespace PW.ExtensionsLibrary
 
     #region Conversion    
 
+    public static T? ToEnum<T>(this string value) where T : struct
+    {
+      if (string.IsNullOrEmpty(value)) return default(T);
+      T result;
+      return Enum.TryParse<T>(value, true, out result) ? result : default(T);
+    }
+
     /// <summary>
     /// Converts a string to an Int32 value
     /// </summary>
