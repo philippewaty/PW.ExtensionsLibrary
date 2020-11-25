@@ -54,6 +54,13 @@ namespace PW.ExtensionsLibrary
 
     #region Conversion    
 
+    /// <summary>
+    /// Converts a string to enum.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="value">The value.</param>
+    /// <url>https://www.extensionmethod.net/csharp/enum/toenum</url>
+    /// <returns></returns>
     public static T? ToEnum<T>(this string value) where T : struct
     {
       if (string.IsNullOrEmpty(value)) return default(T);

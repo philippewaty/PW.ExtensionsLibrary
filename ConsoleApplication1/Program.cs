@@ -1,6 +1,7 @@
 ﻿using System;
 using PW.ExtensionsLibrary;
 using System.ComponentModel;
+using System.Collections.Generic;
 
 namespace ConsoleApplication1
 {
@@ -14,6 +15,13 @@ namespace ConsoleApplication1
       Blue,
       [Description("Indicates Go")]
       Green
+    }
+
+    public class Person
+    {
+      public string FirstName { get; set; }
+      public string LastName { get; set; }
+      public int Age { get; set; }
     }
 
     static void Main(string[] args)
@@ -51,6 +59,9 @@ namespace ConsoleApplication1
 
       Console.WriteLine("");
       TestEnum();
+
+      Console.WriteLine("");
+      TestEnumerable();
 
       Console.WriteLine("Push a key...");
       Console.ReadKey();
@@ -224,7 +235,7 @@ namespace ConsoleApplication1
       System.IO.FileInfo[] fis = di.GetFiles();
 
       Console.WriteLine(string.Format("Number of files : {0}", di.GetFiles().Length));
-      Console.WriteLine(string.Format("Number of files dll + txt: {0}", di.GetFiles("*.dll","*.txt").Length));
+      Console.WriteLine(string.Format("Number of files dll + txt: {0}", di.GetFiles("*.dll", "*.txt").Length));
 
     }
 
@@ -239,6 +250,70 @@ namespace ConsoleApplication1
       string stop = "Indicates Stop";
       Console.WriteLine($"Indicates Stop = {stop.ToEnum<TraficLightsColors>()}");
     }
+
+    static void TestEnumerable()
+    {
+      var list = new List<Customer>();
+
+      Console.WriteLine("ENUMERABLE");
+      Console.WriteLine("----------");
+
+      var personList = new List<Person>();
+      personList.Add(new Person
+      {
+        FirstName = "Alex",
+        LastName = "Friedman",
+        Age = 27
+      });
+      personList.Add(new Person
+      {
+        FirstName = "Jack",
+        LastName = "Bauer",
+        Age = 45
+
+      });
+
+      personList.Add(new Person
+      {
+        FirstName = "Cloe",
+        LastName = "O'Brien",
+        Age = 35
+      });
+      personList.Add(new Person
+      {
+        FirstName = "John",
+        LastName = "Doe",
+        Age = 30
+      });
+
+      Console.WriteLine("ToHtmlTable");
+      Console.WriteLine("-----------");
+      string html = @"<style type = ""text/css""> .tableStyle{border: solid 5 green;} 
+th.header{ background-color:#FF3300} tr.rowStyle { background-color:#33FFFF; 
+border: solid 1 black; } tr.alternate { background-color:#99FF66; 
+border: solid 1 black;}</style>";
+      html += personList.ToHtmlTable("tableStyle", "header", "rowStyle", "alternate");
+      Console.WriteLine(html);
+
+
+      Console.WriteLine("");
+      Console.WriteLine("OrderBy");
+      Console.WriteLine("-------");
+      list.Add(new Customer() { Name = "Doe" });
+      list.Add(new Customer() { Name = "Skywalker" });
+      list.Add(new Customer() { Name = "Bond" });
+
+      var result = list.OrderBy("Name desc");
+      foreach (var item in result)
+      {
+        Console.WriteLine(item.Name);
+      }
+    }
+  }
+
+  class Customer
+  {
+    public string Name { get; set; }
   }
 
 }

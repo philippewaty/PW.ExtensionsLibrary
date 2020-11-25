@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -652,6 +653,106 @@ namespace PW.ExtensionsLibrary
       }
 
       return string.Join(separator, items.Select(x => string.Format(formatString, x)).ToArray());
+    }
+
+    /// <summary>
+    /// Orders the by.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="list">The list.</param>
+    /// <param name="sortExpression">The sort expression.</param>
+    /// <returns></returns>
+    /// <exception cref="System.Exception">No property '" + property + "' in + " + typeof(T).Name + "'</exception>
+    /// <url>https://www.extensionmethod.net/csharp/ienumerable-t/orderby-string-sortexpression</url>
+    public static IEnumerable<T> OrderBy<T>(this IEnumerable<T> list, string sortExpression)
+    {
+      sortExpression += "";
+      string[] parts = sortExpression.Split(' ');
+      bool descending = false;
+      string property = "";
+
+      if (parts.Length > 0 && parts[0] != "")
+      {
+        property = parts[0];
+
+        if (parts.Length > 1)
+        {
+          descending = parts[1].ToLower().Contains("desc");
+        }
+
+        PropertyInfo prop = typeof(T).GetProperty(property);
+
+        if (prop == null)
+        {
+          throw new Exception("No property '" + property + "' in + " + typeof(T).Name + "'");
+        }
+
+        if (descending)
+          return list.OrderByDescending(x => prop.GetValue(x, null));
+        else
+          return list.OrderBy(x => prop.GetValue(x, null));
+      }
+
+      return list;
+    }
+
+    /// <summary>
+    /// Converts an IEnumberable to an HTML DataTable.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="list">The list.</param>
+    /// <param name="tableSyle">The table syle.</param>
+    /// <param name="headerStyle">The header style.</param>
+    /// <param name="rowStyle">The row style.</param>
+    /// <param name="alternateRowStyle">The alternate row style.</param>
+    /// <returns></returns>
+    /// <url>https://www.extensionmethod.net/csharp/ienumerable-t/tohtmltable</url>
+    public static string ToHtmlTable<T>(this IEnumerable<T> list, string tableSyle, string headerStyle, string rowStyle, string alternateRowStyle)
+    {
+
+      var result = new StringBuilder();
+      if (String.IsNullOrEmpty(tableSyle))
+      {
+        result.Append("<table id=\"" + typeof(T).Name + "Table\">");
+      }
+      else
+      {
+        result.Append("<table id=\"" + typeof(T).Name + "Table\" class=\"" + tableSyle + "\">");
+      }
+
+      var propertyArray = typeof(T).GetProperties();
+      foreach (var prop in propertyArray)
+      {
+        if (String.IsNullOrEmpty(headerStyle))
+        {
+          result.AppendFormat("<th>{0}</th>", prop.Name);
+        }
+        else
+        {
+          result.AppendFormat("<th class=\"{0}\">{1}</th>", headerStyle, prop.Name);
+        }
+      }
+
+      for (int i = 0; i < list.Count(); i++)
+      {
+        if (!String.IsNullOrEmpty(rowStyle) && !String.IsNullOrEmpty(alternateRowStyle))
+        {
+          result.AppendFormat("<tr class=\"{0}\">", i % 2 == 0 ? rowStyle : alternateRowStyle);
+        }
+        else
+        {
+          result.AppendFormat("<tr>");
+        }
+
+        foreach (var prop in propertyArray)
+        {
+          object value = prop.GetValue(list.ElementAt(i), null);
+          result.AppendFormat("<td>{0}</td>", value ?? String.Empty);
+        }
+        result.AppendLine("</tr>");
+      }
+      result.Append("</table>");
+      return result.ToString();
     }
   }
 
