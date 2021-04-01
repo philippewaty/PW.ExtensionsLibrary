@@ -440,6 +440,17 @@ namespace PW.ExtensionsLibrary
       return value.EndsWith(suffix) ? value : string.Concat(value, suffix);
     }
 
+    /// <summary>
+    /// Replaces NULL with the specified replacement value.
+    /// </summary>
+    /// <param name="value"></param>
+    /// <param name="alt"></param>
+    /// <exemple>string example = someString.IsNullThen("AlternateValue");</exemple>
+    /// <url>https://www.extensionmethod.net/csharp/string/isnullthen</url>
+    public static string IsNullThen(this string value, string alt)
+    {
+      return value ?? alt ?? string.Empty;
+    }
   }
 
 }

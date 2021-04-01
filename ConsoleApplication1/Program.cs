@@ -105,6 +105,9 @@ namespace ConsoleApplication1
       string Text = "#Hello world. This is a [test]";
       Console.WriteLine("Delete chars [ ] : {0}", Text.DeleteChars('[', ']'));
       Console.WriteLine("Delete chars e,i : {0}", Text.DeleteChars('e', 'i'));
+
+      string nullValue = null;
+      Console.WriteLine(nullValue.IsNullThen("this is a null string"));
     }
 
     static void TestConversion()
