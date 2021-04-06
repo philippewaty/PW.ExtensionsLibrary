@@ -2,6 +2,8 @@
 using PW.ExtensionsLibrary;
 using System.ComponentModel;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SQLite;
 
 namespace ConsoleApplication1
 {
@@ -63,6 +65,9 @@ namespace ConsoleApplication1
       Console.WriteLine("");
       TestEnumerable();
 
+      Console.WriteLine("");
+      TestDBCommand();
+
       Console.WriteLine("Push a key...");
       Console.ReadKey();
     }
@@ -108,6 +113,10 @@ namespace ConsoleApplication1
 
       string nullValue = null;
       Console.WriteLine(nullValue.IsNullThen("this is a null string"));
+
+      Console.WriteLine("aaaaaaaabbbbccccddddeeeeeeeeeeee".FormatWithMask("Hello ########-#A###-####-####-############ Oww"));
+
+      Console.WriteLine("abcdef".FormatWithMask("###-#"));
     }
 
     static void TestConversion()
@@ -312,6 +321,47 @@ border: solid 1 black;}</style>";
         Console.WriteLine(item.Name);
       }
     }
+
+    static void TestDBCommand()
+    {
+      string ConnectionString = "Data Source=:memory:;Version=3;New=True;";
+      string sql;
+      using (SQLiteConnection cnx = new SQLiteConnection(ConnectionString))
+      {
+        cnx.Open();
+
+        string sqlTablePerson = "create table person (name varchar(20), age int)";
+        using (SQLiteCommand cmd = new SQLiteCommand(sqlTablePerson, cnx))
+        {
+          cmd.ExecuteNonQuery();
+        }
+
+        sql = "insert into person (name, age) values ('John', 30)";
+        using (SQLiteCommand cmd = new SQLiteCommand(sql, cnx))
+        {
+          cmd.ExecuteNonQuery();
+        }
+
+        using (SQLiteCommand cmd = new SQLiteCommand("select * from person where name = @name", cnx))
+        {
+          var parameter = cmd.CreateParameter();
+          parameter.ParameterName = "@name";
+          parameter.Value = "John";
+          cmd.Parameters.Add(parameter);
+          Console.WriteLine(cmd.ActualCommandText());
+        }
+
+        string sqlTableTeacher = "create table teacher (name varchar(20))";
+        using (SQLiteCommand cmd = new SQLiteCommand(sqlTableTeacher, cnx))
+        {
+          cmd.ExecuteNonQuery();
+        }
+
+      }
+
+    }
+  }
+
   }
 
   class Customer
@@ -319,4 +369,3 @@ border: solid 1 black;}</style>";
     public string Name { get; set; }
   }
 
-}

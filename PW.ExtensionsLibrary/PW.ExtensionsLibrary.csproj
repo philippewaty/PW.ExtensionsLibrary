@@ -49,6 +49,7 @@
     <Compile Include="Converter.cs" />
     <Compile Include="DataGridViewExtensions.cs" />
     <Compile Include="DateExtensions.cs" />
+    <Compile Include="DBCommandExtensions.cs" />
     <Compile Include="DirectoryInfoExtensions.cs" />
     <Compile Include="EnumerableExtensions.cs" />
     <Compile Include="EnumExtension.cs" />
