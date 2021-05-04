@@ -38,13 +38,13 @@ namespace PW.ExtensionsLibrary
           case DbType.Time:
           case DbType.Xml:
             {
-              sb = sb.Replace(p.ParameterName, string.Format("'{0}'", p.Value.ToString().Replace("'", "''")));
+              sb = sb.Replace(p.ParameterName, string.Format("'{0}'", p.Value?.ToString().Replace("'", "''")));
               break;
             }
 
           default:
             {
-              sb = sb.Replace(p.ParameterName, p.Value.ToString());
+              sb = sb.Replace(p.ParameterName, p.Value?.ToString());
               break;
             }
         }
