@@ -400,3 +400,4 @@ DatabaseExtension/lib/net461/DatabaseExtension.dll
 DatabaseExtension/lib/net461/DatabaseExtension.dll
 /DatabaseExtension/lib
 /DatabaseExtension/.nuget
+/nuget/NuGet.exe
