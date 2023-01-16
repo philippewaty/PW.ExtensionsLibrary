@@ -1,9 +1,9 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using PW.ExtensionsLibrary;
+using pwExtensionsLibrary;
 using System;
 using System.Data.SQLite;
 
-namespace PW.ExtensionsLibraryTest
+namespace pwExtensionsLibraryTest
 {
   [TestClass]
   public class UnitTest1

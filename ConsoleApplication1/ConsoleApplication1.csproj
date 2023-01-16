@@ -56,9 +56,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PW.ExtensionsLibrary\PW.ExtensionsLibrary.csproj">
+    <ProjectReference Include="..\pwExtensionsLibrary\pwExtensionsLibrary.csproj">
       <Project>{84f3206d-42ce-4910-8601-79ca5fa82ffa}</Project>
-      <Name>PW.ExtensionsLibrary</Name>
+      <Name>pwExtensionsLibrary</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

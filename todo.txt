@@ -1,0 +1,75 @@
+Imports System.Runtime.CompilerServices
+
+Namespace Extensions
+
+  Public Module IntExtensions
+
+#Region "Integer"
+    ''' <summary>
+    ''' Indique si un entier est pair
+    ''' </summary>
+    ''' <param name="value">L'entier</param>
+    ''' <returns><c>true</c> si pair, sinon <c>false</c></returns>
+    <Extension()> _
+    Public Function isEven(ByVal value As Integer) As Boolean
+      Return Not (value Mod 2 = 0)
+    End Function
+
+    ''' <summary>
+    ''' Indique si un entier est impair
+    ''' </summary>
+    ''' <param name="value">L'entier</param>
+    ''' <returns><c>true</c> si impair, sinon <c>false</c></returns>
+    <Extension()> _
+    Public Function isOdd(ByVal value As Integer) As Boolean
+      Return value Mod 2 <> 0
+    End Function
+#End Region
+
+#Region "Long"
+    ''' <summary>
+    ''' Indique si un long est pair
+    ''' </summary>
+    ''' <param name="value">L'entier</param>
+    ''' <returns><c>true</c> si pair, sinon <c>false</c></returns>
+    <Extension()> _
+    Public Function isEven(ByVal value As Long) As Boolean
+      Return Not (value Mod 2 = 0)
+    End Function
+
+    ''' <summary>
+    ''' Indique si un long est impair
+    ''' </summary>
+    ''' <param name="value">L'entier</param>
+    ''' <returns><c>true</c> si impair, sinon <c>false</c></returns>
+    <Extension()> _
+    Public Function isOdd(ByVal value As Long) As Boolean
+      Return value Mod 2 <> 0
+    End Function
+#End Region
+
+#Region "Double"
+    ''' <summary>
+    ''' Indique si un entier est pair
+    ''' </summary>
+    ''' <param name="value">L'entier</param>
+    ''' <returns><c>true</c> si pair, sinon <c>false</c></returns>
+    <Extension()> _
+    Public Function isEven(ByVal value As Double) As Boolean
+      Return Not (value Mod 2 = 0)
+    End Function
+
+    ''' <summary>
+    ''' Indique si un entier est impair
+    ''' </summary>
+    ''' <param name="value">L'entier</param>
+    ''' <returns><c>true</c> si impair, sinon <c>false</c></returns>
+    <Extension()> _
+    Public Function isOdd(ByVal value As Double) As Boolean
+      Return value Mod 2 <> 0
+    End Function
+#End Region
+
+  End Module
+
+End Namespace

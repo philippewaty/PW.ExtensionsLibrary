@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PW.ExtensionsLibrary
+namespace pwExtensionsLibrary
 {
   public static class DateExtensions
   {

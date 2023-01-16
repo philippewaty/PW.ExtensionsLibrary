@@ -3,7 +3,7 @@ using System.Reflection;
 using System.Windows;
 using System.Windows.Forms;
 
-namespace PW.ExtensionsLibrary
+namespace pwExtensionsLibrary
 {
   public static class DataGridViewExtensions
   {

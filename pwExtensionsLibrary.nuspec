@@ -1,25 +1,25 @@
 ﻿<?xml version="1.0"?>
-<package  xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
   <metadata>    
-    <id>PW.ExtensionsLibrary</id>
+    <id>pwExtensionsLibrary</id>
     <version>1.0.0</version>
     <title></title>
     <authors>Philippe Waty</authors>
     <owners></owners>
     <license type="file">license.txt</license>
-    <projectUrl>https://github.com/philippewaty/PW.ExtensionsLibrary</projectUrl>
+    <projectUrl>https://github.com/philippewaty/pwExtensionsLibrary</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Compilation of useful C# extension methods to boost productivity for the .net developers.</description>
     <releaseNotes></releaseNotes>
-    <copyright></copyright>
-    <tags></tags>
-    <dependencies>
-      <dependency id="" />
-    </dependencies>
+    <copyright>Copyright © Philippe Waty 2022</copyright>
+    <tags>Extension library</tags>
     <summary></summary>
+    <dependencies>
+      <group targetFramework=".NETFramework4.5" />
+    </dependencies>
   </metadata>
   <files>
-        <file src="..\PW.ExtensionsLibrary\bin\Release\PW.ExtensionsLibrary.dll" target="lib\net45\PW.ExtensionsLibrary.dll" />
+        <file src="lib\net45\pwExtensionsLibrary.dll" target="lib\net45\pwExtensionsLibrary.dll" />
         <file src="license.txt" target="license.txt" />
   </files>
 </package>
