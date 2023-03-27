@@ -480,6 +480,17 @@ namespace pwExtensionsLibrary
       return output;
     }
 
+    /// <summary>
+    /// Returns the first char of the string
+    /// </summary>
+    /// <param name="input"></param>
+    /// <returns></returns>
+    public static string FirstChar(this string input)
+    {
+      if (input.IsNullOrEmpty()) return input;
+      return input.Substring(0, 1);
+    }
+
   }
 
 }

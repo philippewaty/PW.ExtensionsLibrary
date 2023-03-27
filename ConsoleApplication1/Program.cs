@@ -117,6 +117,8 @@ namespace ConsoleApplication1
       Console.WriteLine("aaaaaaaabbbbccccddddeeeeeeeeeeee".FormatWithMask("Hello ########-#A###-####-####-############ Oww"));
 
       Console.WriteLine("abcdef".FormatWithMask("###-#"));
+
+      Console.WriteLine("Firstchar of abcdef: " + "abcdef".FirstChar());
     }
 
     static void TestConversion()
