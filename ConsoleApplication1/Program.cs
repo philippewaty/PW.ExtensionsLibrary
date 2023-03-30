@@ -119,6 +119,18 @@ namespace ConsoleApplication1
       Console.WriteLine("abcdef".FormatWithMask("###-#"));
 
       Console.WriteLine("Firstchar of abcdef: " + "abcdef".FirstChar());
+
+      string stringToValidate = "";
+      Console.WriteLine($"Validate string '{stringToValidate}': " + stringToValidate.Validate(true));
+      Console.WriteLine($"Validate string '{stringToValidate}': " + stringToValidate.Validate(false));
+
+      stringToValidate = "string to validate";
+      Console.WriteLine($"Validate string '{stringToValidate}': " + stringToValidate.Validate(true));
+      Console.WriteLine($"Validate string '{stringToValidate}': " + stringToValidate.Validate(true, 2, 10));
+      Console.WriteLine($"Validate string '{stringToValidate}': " + stringToValidate.Validate(true, 10, 15));
+      
+      stringToValidate = "string to val";
+      Console.WriteLine($"Validate string '{stringToValidate}': " + stringToValidate.Validate(true, 10, 15));
     }
 
     static void TestConversion()
@@ -364,10 +376,10 @@ border: solid 1 black;}</style>";
     }
   }
 
-  }
+}
 
-  class Customer
-  {
-    public string Name { get; set; }
-  }
+class Customer
+{
+  public string Name { get; set; }
+}
 

@@ -331,7 +331,7 @@ namespace pwExtensionsLibrary
     {
       return culture.TextInfo.ToTitleCase(value);
     }
-        
+
     /// <summary>Uppercase First Letter</summary>
     /// <param name = "value">The string value to process</param>
     public static string ToUpperFirstLetter(this string value)
@@ -489,6 +489,28 @@ namespace pwExtensionsLibrary
     {
       if (input.IsNullOrEmpty()) return input;
       return input.Substring(0, 1);
+    }
+
+    /// <summary>
+    /// Validate a string
+    /// </summary>
+    /// <param name="input"></param>
+    /// <param name="mustHaveValue">Indicate if the string must have value (TRUE) or can be empty (FALSE)</param>
+    /// <param name="minLength">Minimum string length</param>
+    /// <param name="maxLength">Maximum string length</param>
+    /// <returns></returns>
+    public static bool Validate(this string input, bool mustHaveValue, int? minLength = null, int? maxLength = null)
+    {
+      if (mustHaveValue && string.IsNullOrEmpty(input)) return false;
+
+      //*** Test min and max length
+      if (minLength.HasValue) {
+        if (input.Length < minLength) return false;
+      }
+      if (maxLength.HasValue) {
+        if (input.Length > maxLength) return false;
+      }
+      return true;
     }
 
   }
