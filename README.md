@@ -5,7 +5,7 @@ Some of them come from other projects/developers.
 ## Minimum requirements
 Framework 4.5
 
-##History
+## History
 Version 1.0.1 27/04/2023
 Added some extensions
 
