@@ -6,10 +6,10 @@ Some of them come from other projects/developers.
 Framework 4.5
 
 ## History
-Version 1.0.1 27/04/2023
+Version 1.0.1 (27/04/2023)<br>
 Added some extensions
 
-Version 1.0.0 30/09/22019
+Version 1.0.0 (30/09/22019)<br>
 First version
 
 ## List extensions for objects/data type
