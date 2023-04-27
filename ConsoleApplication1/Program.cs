@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SQLite;
+using System.Linq;
 
 namespace ConsoleApplication1
 {
@@ -68,6 +69,9 @@ namespace ConsoleApplication1
       Console.WriteLine("");
       TestDBCommand();
 
+      Console.WriteLine("");
+      TestCollection();
+
       Console.WriteLine("Push a key...");
       Console.ReadKey();
     }
@@ -128,9 +132,40 @@ namespace ConsoleApplication1
       Console.WriteLine($"Validate string '{stringToValidate}': " + stringToValidate.Validate(true));
       Console.WriteLine($"Validate string '{stringToValidate}': " + stringToValidate.Validate(true, 2, 10));
       Console.WriteLine($"Validate string '{stringToValidate}': " + stringToValidate.Validate(true, 10, 15));
-      
+
       stringToValidate = "string to val";
       Console.WriteLine($"Validate string '{stringToValidate}': " + stringToValidate.Validate(true, 10, 15));
+
+      s = "test";
+      Console.WriteLine(s.IfNullElse("Null Alternate Value"));
+      s = "";
+      Console.WriteLine(s.IfNullElse("Null Alternate Value"));
+
+      List<string> testStrings = new List<string>();
+      testStrings.Add("DIOM2816X14M");
+      testStrings.Add("SJ2-35954A-SMT-TR");
+      testStrings.Add("SOIC127P700X230-16M");
+      testStrings.Add("SQFP50P1200X1200X170-64M");
+
+      var query1 = from testLike in testStrings
+                   where testLike.Like("DIOM%")
+                   select testLike;
+      Console.WriteLine(query1.FirstOrDefault());
+
+      var query2 = from testLike in testStrings
+                   where testLike.Like("SJ2%TR")
+                   select testLike;
+      Console.WriteLine(query2.FirstOrDefault());
+
+      var query3 = from testLike in testStrings
+                   where testLike.Like("SOIC127%16%")
+                   select testLike;
+      Console.WriteLine(query3.FirstOrDefault());
+
+      var query4 = from testLike in testStrings
+                   where testLike.Like("SQFP50P%64%")
+                   select testLike;
+      Console.WriteLine(query4.FirstOrDefault());
     }
 
     static void TestConversion()
@@ -372,8 +407,72 @@ border: solid 1 black;}</style>";
         }
 
       }
-
     }
+
+    static void TestCollection()
+    {
+      List<Customer> customers = new List<Customer>();
+
+      Customer customer = new Customer()
+      {
+        Age = 10,
+        Name = "John Doe"
+      };
+
+      //Generic condition
+      customers.AddIf(() => TodayIsFriday(), customer);
+
+      //Item specific condition
+      customers.AddIf(p => p.Age >= 8, customer);
+
+      customer.Age = 6;
+      customers.AddIf(p => p.Age >= 8, customer);
+
+
+      var items = new List<TestItem> {
+            new TestItem {ItemID = 1, ItemName = "TestItem"},
+            new TestItem {ItemID = 2, ItemName = "Wigit"},
+            new TestItem {ItemID = 3, ItemName = "TestItem2"},
+            new TestItem {ItemID = 4, ItemName = "Foo"},
+            new TestItem {ItemID = 5, ItemName = "Bar"},
+            new TestItem {ItemID = 6, ItemName = "TestFooBarItem"}
+      };
+
+      Console.WriteLine("Items starting with Test using delegate");
+      Func<TestItem, bool> itemNameFilter = delegate (TestItem testItem) { return testItem.ItemName.StartsWith("Test"); };
+      foreach (var testItem in items.Filter(itemNameFilter))
+      {
+        Console.WriteLine(testItem.ItemName);
+      }
+
+      Console.WriteLine("Items with ItemName containing Item and ItemID > 2 using Lamda Expression");
+      foreach (var testItem in items.Filter(x => x.ItemName.StartsWith("Test") && x.ItemID > 2))
+      {
+        Console.WriteLine(testItem.ItemName);
+      }
+
+
+      List<Customer> custs = new List<Customer>{
+        new Customer {FirstName = "Peggy", AcctBalance = 12442.98},
+        new Customer {FirstName = "Sally", AcctBalance = 32.39},
+        new Customer {FirstName = "Billy", AcctBalance = 25.33},
+        new Customer {FirstName = "Tommy", AcctBalance = 12345}
+        };
+
+      bool showAccountBalancesUnder5000 = false;
+
+      var custList = custs.WhereIf(showAccountBalancesUnder5000, c => c.AcctBalance < 5000).ToList(); //will not perform the filtering
+
+      showAccountBalancesUnder5000 = true;
+
+      var custListUnder5000 = custs.WhereIf(showAccountBalancesUnder5000, c => c.AcctBalance < 5000).ToList(); //will perform the filtering
+    }
+
+    static bool TodayIsFriday()
+    {
+      return DateTime.Today.DayOfWeek == DayOfWeek.Friday;
+    }
+
   }
 
 }
@@ -381,5 +480,14 @@ border: solid 1 black;}</style>";
 class Customer
 {
   public string Name { get; set; }
+  public string FirstName { get; set; }
+  public int Age { get; set; }
+  public double AcctBalance { get; set; }
+}
+
+class TestItem
+{
+  public int ItemID { get; set; }
+  public string ItemName { get; set; }
 }
 

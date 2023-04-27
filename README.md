@@ -5,6 +5,13 @@ Some of them come from other projects/developers.
 ## Minimum requirements
 Framework 4.5
 
+##History
+Version 1.0.1 27/04/2023
+Added some extensions
+
+Version 1.0.0 30/09/22019
+First version
+
 ## List extensions for objects/data type
 - Boolean
 - Comparable
@@ -72,3 +79,4 @@ Framework 4.5
 "The quick brown fox jumps over the lazy dog".LimitTextLength(20, false); // returns "The quick brown fox"
 "The quick brown fox jumps over the lazy dog".LimitTextLength(20, true); // returns "The quick brown f..."
 ```
+

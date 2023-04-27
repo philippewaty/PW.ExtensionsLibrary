@@ -754,6 +754,54 @@ namespace pwExtensionsLibrary
       result.Append("</table>");
       return result.ToString();
     }
+
+    /// <summary>
+    /// Allows you to filter an IEnumerable<T>
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="list"></param>
+    /// <param name="filterParam"></param>
+    /// <returns></returns>
+    /// <ur>https://www.extensionmethod.net/csharp/ienumerable-t/filter</ur>
+    public static IEnumerable<T> Filter<T>(this IEnumerable<T> list, Func<T, bool> filterParam)
+    {
+      return list.Where(filterParam);
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="TSource"></typeparam>
+    /// <param name="source"></param>
+    /// <param name="condition"></param>
+    /// <param name="predicate"></param>
+    /// <returns></returns>
+    /// <url>https://www.extensionmethod.net/csharp/ienumerable-t/whereif</url>
+    public static IEnumerable<TSource> WhereIf<TSource>(this IEnumerable<TSource> source, bool condition, Func<TSource, bool> predicate)
+    {
+      if (condition)
+        return source.Where(predicate);
+      else
+        return source;
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="TSource"></typeparam>
+    /// <param name="source"></param>
+    /// <param name="condition"></param>
+    /// <param name="predicate"></param>
+    /// <returns></returns>
+    /// <url>https://www.extensionmethod.net/csharp/ienumerable-t/whereif</url>
+    public static IEnumerable<TSource> WhereIf<TSource>(this IEnumerable<TSource> source, bool condition, Func<TSource, int, bool> predicate)
+    {
+      if (condition)
+        return source.Where(predicate);
+      else
+        return source;
+    }
+
   }
 
 }

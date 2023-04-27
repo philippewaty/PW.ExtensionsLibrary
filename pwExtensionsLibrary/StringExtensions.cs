@@ -513,6 +513,182 @@ namespace pwExtensionsLibrary
       return true;
     }
 
+    /// <summary>
+    /// Check if string is null or white spaces and return a value
+    /// </summary>
+    /// <param name="input">string to check</param>
+    /// <param name="nullAlternateValue">value to be returned in case string is null</param>
+    /// <returns>string: original or null alternative value</returns>
+    /// <url>https://www.extensionmethod.net/csharp/string/ifnullelse</url>
+    public static string IfNullElse(this string input, string nullAlternateValue)
+    {
+      return (!string.IsNullOrWhiteSpace(input)) ? input : nullAlternateValue;
+    }
+
+    /// <summary>
+    /// Strip a string of the specified character.
+    /// </summary>
+    /// <param name="s">the string to process</param>
+    /// <param name="char">character to remove from the string</param>
+    /// <example>
+    /// string s = "abcde";
+    /// 
+    /// s = s.Strip('b');  //s becomes 'acde;
+    /// </example>
+    /// <returns></returns>
+    /// <url>https://www.extensionmethod.net/csharp/string/strip</url>
+    public static string Strip(this string s, char character)
+    {
+      s = s.Replace(character.ToString(), "");
+
+      return s;
+    }
+
+    /// <summary>
+    /// Strip a string of the specified characters.
+    /// </summary>
+    /// <param name="s">the string to process</param>
+    /// <param name="chars">list of characters to remove from the string</param>
+    /// <example>
+    /// string s = "abcde";
+    /// 
+    /// s = s.Strip('a', 'd');  //s becomes 'bce;
+    /// </example>
+    /// <returns></returns>
+    /// <url>https://www.extensionmethod.net/csharp/string/strip</url>
+    public static string Strip(this string s, params char[] chars)
+    {
+      foreach (char c in chars)
+      {
+        s = s.Replace(c.ToString(), "");
+      }
+
+      return s;
+    }
+    /// <summary>
+    /// Strip a string of the specified substring.
+    /// </summary>
+    /// <param name="s">the string to process</param>
+    /// <param name="subString">substring to remove</param>
+    /// <example>
+    /// string s = "abcde";
+    /// 
+    /// s = s.Strip("bcd");  //s becomes 'ae;
+    /// </example>
+    /// <returns></returns>
+    /// <url>https://www.extensionmethod.net/csharp/string/strip</url>
+    public static string Strip(this string s, string subString)
+    {
+      s = s.Replace(subString, "");
+
+      return s;
+    }
+
+    /// <summary>
+    /// Tests a string to be Like another string containing SQL Like style wildcards
+    /// </summary>
+    /// <param name="value">string to be searched</param>
+    /// <param name="searchString">the search string containing wildcards</param>
+    /// <returns>value.Like(searchString)</returns>
+    /// <example>value.Like("a")</example>
+    /// <example>value.Like("a%")</example>
+    /// <example>value.Like("%b")</example>
+    /// <example>value.Like("a%b")</example>
+    /// <example>value.Like("a%b%c")</example>
+    /// <remarks>base author -- Ruard van Elburg from StackOverflow, modifications by dvn</remarks>
+    /// <remarks>converted to a String extension by sja</remarks>
+    /// <url>https://www.extensionmethod.net/csharp/string/like-searchstring-reverselike-comparestring-2</url>
+    /// <seealso cref="https://stackoverflow.com/questions/1040380/wildcard-search-for-linq"/>
+    public static bool Like(this String value, string searchString)
+    {
+      bool result = false;
+
+      var likeParts = searchString.Split(new char[] { '%' });
+
+      for (int i = 0; i < likeParts.Length; i++)
+      {
+        if (likeParts[i] == String.Empty)
+        {
+          continue;   // "a%"
+        }
+
+        if (i == 0)
+        {
+          if (likeParts.Length == 1) // "a"
+          {
+            result = value.Equals(likeParts[i], StringComparison.OrdinalIgnoreCase);
+          }
+          else // "a%" or "a%b"
+          {
+            result = value.StartsWith(likeParts[i], StringComparison.OrdinalIgnoreCase);
+          }
+        }
+        else if (i == likeParts.Length - 1) // "a%b" or "%b"
+        {
+          result &= value.EndsWith(likeParts[i], StringComparison.OrdinalIgnoreCase);
+        }
+        else // "a%b%c"
+        {
+          int current = value.IndexOf(likeParts[i], StringComparison.OrdinalIgnoreCase);
+          int previous = value.IndexOf(likeParts[i - 1], StringComparison.OrdinalIgnoreCase);
+          result &= previous < current;
+        }
+      }
+
+      return result;
+    }
+
+    /// <summary>
+    /// Tests a string containing SQL Like style wildcards to be ReverseLike another string 
+    /// </summary>
+    /// <param name="value">search string containing wildcards</param>
+    /// <param name="compareString">string to be compared</param>
+    /// <returns>value.ReverseLike(compareString)</returns>
+    /// <example>value.ReverseLike("a")</example>
+    /// <example>value.ReverseLike("abc")</example>
+    /// <example>value.ReverseLike("ab")</example>
+    /// <example>value.ReverseLike("axb")</example>
+    /// <example>value.ReverseLike("axbyc")</example>
+    /// <remarks>reversed logic of Like String extension</remarks>
+    /// <url>https://www.extensionmethod.net/csharp/string/like-searchstring-reverselike-comparestring-2</url>
+    public static bool ReverseLike(this String value, string compareString)
+    {
+      bool result = false;
+
+      var likeParts = value.Split(new char[] { '%' });
+
+      for (int i = 0; i < likeParts.Length; i++)
+      {
+        if (likeParts[i] == String.Empty)
+        {
+          continue;   // "a%"
+        }
+
+        if (i == 0)
+        {
+          if (likeParts.Length == 1) // "a"
+          {
+            result = compareString.Equals(likeParts[i], StringComparison.OrdinalIgnoreCase);
+          }
+          else // "a%" or "a%b"
+          {
+            result = compareString.StartsWith(likeParts[i], StringComparison.OrdinalIgnoreCase);
+          }
+        }
+        else if (i == likeParts.Length - 1) // "a%b" or "%b"
+        {
+          result &= compareString.EndsWith(likeParts[i], StringComparison.OrdinalIgnoreCase);
+        }
+        else // "a%b%c"
+        {
+          int current = compareString.IndexOf(likeParts[i], StringComparison.OrdinalIgnoreCase);
+          int previous = compareString.IndexOf(likeParts[i - 1], StringComparison.OrdinalIgnoreCase);
+          result &= previous < current;
+        }
+      }
+
+      return result;
+    }
   }
 
 }

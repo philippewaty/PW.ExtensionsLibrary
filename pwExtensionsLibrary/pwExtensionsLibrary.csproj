@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BooleanExtensions.cs" />
+    <Compile Include="CollectionExtensions.cs" />
     <Compile Include="ComparableExtensions.cs" />
     <Compile Include="Converter.cs" />
     <Compile Include="DataGridViewExtensions.cs" />
