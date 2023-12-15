@@ -186,5 +186,19 @@ namespace pwExtensionsLibrary
           );
     }
 
-  }
+        /// <summary>
+        /// Determines if the Item is contained within the listed array
+        /// </summary>
+        /// <typeparam name="T">The type of object</typeparam>
+        /// <param name="item">The calling item</param>
+        /// <param name="range">An array or comma separated list of the items to check against the calling</param>
+        /// <returns>True if item is found in list</returns>
+        /// <remarks>Provides syntatic sugar by reordering the subject of the IEnumerable.Contains method</remarks>
+        /// <url>http://www.codingeverything.com/2013/12/InFunction.html</url>
+        public static bool In<T>(this T item, params T[] range)
+        {
+            return range.Contains(item);
+        }
+
+    }
 }
