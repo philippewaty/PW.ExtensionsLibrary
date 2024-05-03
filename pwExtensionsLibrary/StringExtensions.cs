@@ -234,6 +234,10 @@ namespace pwExtensionsLibrary
                 return true;
             if (val == "n")
                 return false;
+            if (val == "1")
+                return true;
+            if (val == "0")
+                return false;
             throw new ArgumentException("Value is not a boolean value.");
         }
 
