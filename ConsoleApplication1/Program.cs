@@ -166,6 +166,11 @@ namespace ConsoleApplication1
                          where testLike.Like("SQFP50P%64%")
                          select testLike;
             Console.WriteLine(query4.FirstOrDefault());
+
+            Console.WriteLine(Environment.NewLine);
+            Console.WriteLine("Test IsNullOrEmpty".IsEqualIgnoreCase("TEST ISNULLOREMPTY"));
+            Console.WriteLine("Test IsNullOrEmpty".IsEqualIgnoreCase("test isnullorempty"));
+            Console.WriteLine("Test IsNullOrEmpty".IsEqualIgnoreCase("test is null or empty"));
         }
 
         static void TestConversion()
@@ -174,6 +179,8 @@ namespace ConsoleApplication1
             Console.WriteLine("----------");
 
             Console.WriteLine("".ConvertTo<Boolean>(false, true));
+            Console.WriteLine("0".ConvertTo<Boolean>());
+            Console.WriteLine("1".ConvertTo<Boolean>());
             Console.WriteLine("".ConvertTo<Int32>(0, true));
             Console.WriteLine("123".ConvertTo().ToInt32());
             Console.WriteLine(123f.ConvertTo<Int32>());
